@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
-    <title>Retaped</title>
+    <title>GOAP</title>
     <link rel="icon" type="image/png"
         href="https://autumn.revolt.chat/attachments/7bK-GozlngbQJyaLoZ3919FWqzvAO4VmI4iiJ-A7Aw/Retaped%20Logo.png" />
     <!--<script src="https://js.hcaptcha.com/1/api.js" async defer></script>-->
 </head>
-
 <body>
-    <h1 id="name">Retaped</h1>
-    <h4 id="descri">The revolt.chat client re-taped from the one that's held together by duct tape and bad code</h4>
-    <br />
-    <div id="loginoe">
+    <section class="login-section">
+        <h1 class="login-logo">.\ /.</h1>
+        <h2 class="name">goap</h2>
+        <h4 class="desc">The revolt.chat client that hates you :)</h4>
 
-        <div id="innercontainer">
+        <form class="login-form">
             <h4 id="loginerror" hidden="false"></h4>
-            <input id="token" type="password" autocomplete="on" placeholder="Token">
-            <br><input id="inputTheme" placeholder="Theme">
-            <br><button id="login" onclick="login();">Login</button>
-        </div>
-        <!--
-        <div id="innercontainer">
-            <input id="email" autocomplete="on" placeholder="Email address">
-            <input id="password" autocomplete="on" placeholder="Password" type="password">
-            <div class="h-captcha" data-sitekey="3daae85e-09ab-4ff6-9f24-e8f4f335e433"></div>
-            <input type="submit" value="Submit"/>
-        </div>
-    -->
-    </div>
+            <input class="login-put" id="token" type="password" autocomplete="on" placeholder="Token">
+            <input class="login-put"id="inputTheme" placeholder="Theme">
+            <button id="login" onclick="login();">Login</button>
+        </form>
+            <!--
+            <div id="innercontainer">
+                <input id="email" autocomplete="on" placeholder="Email address">
+                <input id="password" autocomplete="on" placeholder="Password" type="password">
+                <div class="h-captcha" data-sitekey="3daae85e-09ab-4ff6-9f24-e8f4f335e433"></div>
+                <input type="submit" value="Submit"/>
+            </div>
+        -->
+    </section>
     <div id="logged" hidden="true">
         <div id="info">
             <button id="dms" onclick="getdms()">DMS</button>
@@ -70,53 +68,66 @@
         <h2 id="theme"></h2>
     </div>
     <style>
-        * {
+        :root {
             --foreground: #FFFFFF;
             --background: #000000;
             --secondary-background: #1A1A1A;
             --usernames: #FFFFFF;
             --input-color: #000000;
-            --accent: #FD6671;
+            --accent: red;
         }
 
-        #loginoe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-            background-color: var(--secondary-background);
-            border-radius: 30px !important;
-            height: 20%;
-            width: 30%;
-            padding: 2px;
-            background-image: linear-gradient(to bottom, var(--secondary-background) 0%, var(--secondary-background) 100%), linear-gradient(to bottom, var(--accent) 0%, var(--accent) 100%);
-            background-clip: content-box, padding-box;
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        #innercontainer {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+        body{
+            background: black;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        #login,
-        #inputTheme,
-        #token {
-            display: block;
-            margin-right: auto;
-            margin-left: auto;
+        .login-section{
+            display: grid;
+            place-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100vh;
         }
 
-        #inputTheme,
-        #token {
+        .login-logo{
+            color: red;
+            font-size: 5rem;
+            margin-bottom: 3rem;
+            /* font-family: monospace; */
+        }
+
+        .name{
+            font-size: 3.5rem;
+            text-transform: uppercase;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .login-put {
+            border: 3px solid;
             color: var(--foreground);
-            border-radius: 10px;
+            font-size: 1.2rem;
+            outline: none;
             line-height: 200%;
+            padding-left: 0.5rem;
             width: 400px;
-            outline: 2px solid var(--foreground);
+        }
+
+        .login-put:focus{
+            border: 3px solid red;
         }
 
         #upload {
@@ -202,12 +213,6 @@
         #replymsg {
             padding-bottom: 0px;
             display: block
-        }
-
-        #name,
-        #descri {
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
         h6,
@@ -305,6 +310,7 @@
             document.getElementById("logged").style = "display:flex;"
             document.getElementById("name").hidden = true;
             document.getElementById("descri").hidden = true;
+            document.querySelector(".login-section").hidden = true;
             //if (!document.getElementById("inputTheme").value == '') { document.cookie = `theme=${document.getElementById("inputTheme").value};` }
             //if (document.cookie) { let theme = document.cookie.split('; ').find(row => row.startsWith('theme=')).split('=')[1]; }
             theme = document.getElementById("inputTheme").value
