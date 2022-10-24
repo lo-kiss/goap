@@ -18,8 +18,8 @@
         <form class="login-form">
             <h4 id="loginerror" hidden="false"></h4>
             <input class="login-put" id="token" type="password" autocomplete="on" placeholder="Token">
-            <input class="login-put"id="inputTheme" placeholder="Theme">
-            <button id="login" onclick="login();">Login</button>
+            <input class="login-put" id="inputTheme" placeholder="Theme">
+            <button id="loginBtn" onclick="login();">Login</button>
         </form>
             <!--
             <div id="innercontainer">
@@ -293,7 +293,7 @@
             let theme;
             if (document.getElementById("token").value) {
                 thetoken = document.getElementById("token").value;
-                    localStorage.setItem("token",thetoken)
+                localStorage.setItem("token",thetoken)
             }
             bonfire()
             await fetch("https://api.revolt.chat/users/@me", {
@@ -307,14 +307,11 @@
                 .then(response => response.json())
                 .then(data => theuser = data)
                 .catch(err => showError("INVALID TOKEN"))
-            document.getElementById("loginoe").hidden = true;
+            document.querySelector(".login-section").style.display = "none";
             document.getElementById("logged").hidden = false;
-            document.getElementById("logged").style = "display:flex;"
-            document.getElementById("name").hidden = true;
-            document.getElementById("descri").hidden = true;
-            document.querySelector(".login-section").hidden = true;
-            //if (!document.getElementById("inputTheme").value == '') { document.cookie = `theme=${document.getElementById("inputTheme").value};` }
-            //if (document.cookie) { let theme = document.cookie.split('; ').find(row => row.startsWith('theme=')).split('=')[1]; }
+            document.getElementById("logged").style.display = "flex";
+            // if (!document.getElementById("inputTheme").value == '') { document.cookie = `theme=${document.getElementById("inputTheme").value};` }
+            // if (document.cookie) { let theme = document.cookie.split('; ').find(row => row.startsWith('theme=')).split('=')[1]; }
             theme = document.getElementById("inputTheme").value
             document.getElementById("theme").innerHTML = theme;
         }
