@@ -36,7 +36,7 @@
             <div id="servers"></div>
         </div>
 
-        <div id="channelInfo">
+        <div id="chnnelInfo">
             <h3 id="connected">Disconnected</h3>
             <h2 id="chanName"></h2>
             <h3 id="chanDesc"></h3>
@@ -65,7 +65,7 @@
 
             <div id="messagebar">
                 <button onclick="contentToJson()">JSON</button>
-                <input class="input-bar" type="text" style="width: 90%;" autocomplete="off" placeholder="Start wasting your time" id="input" />
+                <input class="input-bar" type="text" autocomplete="off" placeholder="Start wasting your time" id="input">
                 <button onclick="sendmessage()">Send</button>
             </div>
         </div>
@@ -74,9 +74,6 @@
     <style>
         :root {
             --secondary-background: #1A1A1A;
-            --usernames: #FFFFFF;
-            --input-color: #000000;
-            --accent: red;
         }
 
         *{
@@ -84,10 +81,18 @@
             box-sizing: border-box;
         }
 
+        html {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: monospace
+        }
+
         body{
             background: black;
             color: white;
             font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            max-height: 100vh;
         }
 
         .login-section{
@@ -119,6 +124,7 @@
 
         .login-put, .input-bar {
             border: 3px solid;
+            background: black;
             color: var(--foreground);
             font-size: 1.2rem;
             outline: none;
@@ -127,19 +133,15 @@
             width: 400px;
         }
 
-        #upload {
-            background-color: var(--background)
-        }
-
-        #info {
-            display: block;
-        }
-
         #logged {
             display: flex;
             flex-direction: row;
             align-items: flex-start;
             height: 100vh;
+        }
+
+        #chnnelInfo{
+            max-width: 13em;
         }
 
         #closereply {
@@ -153,6 +155,14 @@
             outline: 0;
             border-color: rgba(0, 0, 0, 0)
         }
+
+        [id^=chan]{
+            width: 100%;
+        }
+
+     #dms, #servers{
+         width: 100%;
+     }
 
         .msg,
         .messagecont {
@@ -174,26 +184,19 @@
         }
 
         #central {
-            display: block;
+            display: flex;
             flex-direction: column;
             margin-left: 3rem;
+            width: 100%;
         }
 
-        #channelInfo {
-            padding-right: 2%;
-            word-break: break-all !important;
+        #channelDesc{
+            font-size: 1rem;
         }
-
-     #channelDesc{
-         font-size: 1rem;
-     }
 
         #info {
+            padding: 1rem;
             word-break: break-all !important;
-        }
-
-        input {
-            background-color: var(--input-color);
         }
 
         button:hover {
@@ -203,12 +206,8 @@
 
         .messagecont,
         .message {
-            text-align: left;
-            margin: 0;
             white-space: nowrap;
-            display: inline;
-            vertical-align: top;
-            padding: 0;
+            display: block;
         }
 
         #replymsg {
@@ -216,17 +215,6 @@
             display: block
         }
 
-        h6,
-        h5,
-        h4 {
-            margin: 0
-        }
-
-        html {
-            background-color: var(--background);
-            color: var(--foreground);
-            font-family: monospace
-        }
         img {
             max-width: 600px;
         }
@@ -234,7 +222,6 @@
         #messages {
             overflow: auto;
             backface-visibility: hidden;
-            -ms-overflow-style: none;
             height: 45vw;
         }
 
@@ -784,5 +771,4 @@
         }
     </script>
 </body>
-
 </html>
