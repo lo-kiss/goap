@@ -33,8 +33,6 @@
     <div id="logged" hidden="true">
         <div id="info">
             <button id="dms" onclick="getdms()">DMS</button>
-            <br>
-            <br>
             <div id="servers"></div>
         </div>
 
@@ -42,28 +40,32 @@
             <h3 id="connected">Disconnected</h3>
             <h2 id="chanName"></h2>
             <h3 id="chanDesc"></h3>
-            <br>
             <div id="channels"></div>
         </div>
 
         <div id="central">
             <div id="messages" hidden="true">
             </div>
-            <button onclick="bonfire()">Re-establish websocket</button>
-            <button onclick="getmessage()">Get messages</button>
-            <button onclick="uIDs=[];usernames=[];pfpsrcs=[];getmessage();">Reload Usernames</button>
-            <button onclick="embedmessage()">Send embed</button>
-            <br>
             <input type="text" autocomplete="off" placeholder="Title" id="title" hidden="true" />
             <input type="text" autocomplete="off" placeholder="Description" id="desc" hidden="true" />
             <input type="text" autocomplete="off" placeholder="Color" id="color" hidden="true" />
             <h5 id="error" hidden="true"></h5>
-            <h5 id="replymsg" style="display:inline" hidden="true"></h5><button style="display:inline" hidden="true"
-                id=closereply onclick="document.getElementById('replymsg').innerText='';reply=''">X</button>
-            <input type="file" id="upload"></input>
+
+            <div class="toolbar">
+                <h5 id="replymsg" style="display:inline" hidden="true"></h5><button style="display:inline" hidden="true"
+                    id=closereply onclick="document.getElementById('replymsg').innerText='';reply=''">X</button>
+                <input type="file" id="upload"></input>
+
+                <br>
+                <button onclick="bonfire()">Re-establish websocket</button>
+                <button onclick="getmessage()">Get messages</button>
+                <button onclick="uIDs=[];usernames=[];pfpsrcs=[];getmessage();">Reload Usernames</button>
+                <button onclick="embedmessage()">Send embed</button>
+            </div>
+
             <div id="messagebar">
                 <button onclick="contentToJson()">JSON</button>
-                <input type="text" style="width: 90%;" autocomplete="off" placeholder="Speak in channel" id="input" />
+                <input class="input-bar" type="text" style="width: 90%;" autocomplete="off" placeholder="Start wasting your time" id="input" />
                 <button onclick="sendmessage()">Send</button>
             </div>
         </div>
@@ -71,8 +73,6 @@
     </div>
     <style>
         :root {
-            --foreground: #FFFFFF;
-            --background: #000000;
             --secondary-background: #1A1A1A;
             --usernames: #FFFFFF;
             --input-color: #000000;
@@ -81,7 +81,6 @@
 
         *{
             margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
@@ -118,7 +117,7 @@
             margin-top: 3rem;
         }
 
-        .login-put {
+        .login-put, .input-bar {
             border: 3px solid;
             color: var(--foreground);
             font-size: 1.2rem;
@@ -128,16 +127,19 @@
             width: 400px;
         }
 
-        .login-put:focus{
-            border: 3px solid red;
-        }
-
         #upload {
             background-color: var(--background)
         }
 
         #info {
             display: block;
+        }
+
+        #logged {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            height: 100vh;
         }
 
         #closereply {
@@ -174,15 +176,17 @@
         #central {
             display: block;
             flex-direction: column;
-            padding-left: 10%;
+            margin-left: 3rem;
         }
 
         #channelInfo {
-            padding-left: 2%;
-            width: 10%;
             padding-right: 2%;
             word-break: break-all !important;
         }
+
+     #channelDesc{
+         font-size: 1rem;
+     }
 
         #info {
             word-break: break-all !important;
@@ -195,11 +199,6 @@
         button:hover {
             text-shadow: 0 -1px 0 darken(var(--accent), 15%);
             background: lighten(var(--accent), 5%);
-        }
-
-        #logged {
-            flex-direction: row;
-            align-items: flex-start;
         }
 
         .messagecont,
@@ -233,25 +232,19 @@
         }
 
         #messages {
-            white-space: pre-line;
             overflow: auto;
             backface-visibility: hidden;
             -ms-overflow-style: none;
             height: 45vw;
-            overflow-y: scroll;
         }
 
         #messagebar {
-            display: flex;
-            align-items: center;
+            /* display: flex;
+               align-items: center; */
         }
 
         #channels {
-            border-style: solid;
-            border-color: var(--foreground);
-            border-width: medium;
-            padding-right: 5px;
-            border-radius: 5px;
+            border: medium solid;
         }
 
         button {
