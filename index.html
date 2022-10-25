@@ -18,7 +18,6 @@
         <form class="login-form">
             <h4 id="loginerror" hidden="false"></h4>
             <input class="login-put" id="token" type="password" autocomplete="on" placeholder="Token">
-            <input class="login-put" id="inputTheme" placeholder="Theme">
             <button id="loginBtn" onclick="login();">Login</button>
         </form>
             <!--
@@ -69,7 +68,6 @@
                 <button onclick="sendmessage()">Send</button>
             </div>
         </div>
-        <h2 id="theme"></h2>
     </div>
     <style>
         :root {
@@ -225,11 +223,6 @@
             height: 45vw;
         }
 
-        #messagebar {
-            /* display: flex;
-               align-items: center; */
-        }
-
         #channels {
             border: medium solid;
         }
@@ -270,7 +263,6 @@
         }
 
         async function login() {
-            let theme;
             if (document.getElementById("token").value) {
                 thetoken = document.getElementById("token").value;
                 localStorage.setItem("token",thetoken)
@@ -290,10 +282,6 @@
             document.querySelector(".login-section").style.display = "none";
             document.getElementById("logged").hidden = false;
             document.getElementById("logged").style.display = "flex";
-            // if (!document.getElementById("inputTheme").value == '') { document.cookie = `theme=${document.getElementById("inputTheme").value};` }
-            // if (document.cookie) { let theme = document.cookie.split('; ').find(row => row.startsWith('theme=')).split('=')[1]; }
-            theme = document.getElementById("inputTheme").value
-            document.getElementById("theme").innerHTML = theme;
         }
 
         async function bonfire() {
