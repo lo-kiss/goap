@@ -56,6 +56,7 @@
                 <input type="file" id="upload"></input>
 
                 <br>
+
                 <button onclick="bonfire()">Re-establish websocket</button>
                 <button onclick="getmessage()">Get messages</button>
                 <button onclick="uIDs=[];usernames=[];pfpsrcs=[];getmessage();">Reload Usernames</button>
@@ -158,9 +159,9 @@
             width: 100%;
         }
 
-     #dms, #servers{
-         width: 100%;
-     }
+        #dms, #servers{
+            width: 100%;
+        }
 
         .msg,
         .messagecont {
@@ -236,6 +237,7 @@
             max-width: 50px;
             max-width: 50px;
         }
+
     </style>
     <script>
         let lastmessage;
@@ -378,7 +380,6 @@
             embedSend = true;
         }
 
-
         document.getElementById("input").onkeypress = function (event) {
             if (event.keyCode == 13 || event.which == 13) {
                 sendmessage();
@@ -402,8 +403,6 @@
             }
         };
 
-
-
         function contentToJson() {
             if (!sendRawJson) {
                 sendRawJson = true;
@@ -411,11 +410,9 @@
             else { sendRawJson = false; }
         }
 
-
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-
 
         async function sendmessage() {
             message = document.getElementById('input').value
@@ -594,7 +591,6 @@
                 id="server${i}">${server[i - 1].name}</button>`;
             }
         }
-
 
         async function getchannel() {
             document.getElementById(`channels`).innerHTML = ""
