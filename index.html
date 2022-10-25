@@ -80,15 +80,9 @@
             box-sizing: border-box;
         }
 
-        html {
-            background-color: var(--background);
-            color: var(--foreground);
-            font-family: monospace
-        }
-
         body{
             background: black;
-            color: white;
+            color: hsl(0, 0%, 90%);
             font-family: Arial, Helvetica, sans-serif;
             width: 100%;
             max-height: 100vh;
@@ -106,7 +100,6 @@
             color: red;
             font-size: 5rem;
             margin-bottom: 3rem;
-            /* font-family: monospace; */
         }
 
         .name{
@@ -171,15 +164,13 @@
             max-width: 80% !important;
         }
 
-        #author {
-            display: inline-block;
+        .msg{
+            color: hsl(0, 0%, 65%);
         }
 
-        #input,
         #author {
-            color: var(--usernames);
-            margin-left: 0%;
-            border-left: 0%
+            color: hsl(0, 0%, 90%);
+            display: inline-block;
         }
 
         #central {
@@ -231,11 +222,6 @@
         button {
             background-color: var(--secondary-background);
             color: var(--foreground)
-        }
-
-        .pfp {
-            max-width: 50px;
-            max-width: 50px;
         }
 
     </style>
@@ -698,7 +684,7 @@
                         document.getElementById('replymsg').innerText='> ${message.content}';
                         document.getElementById('replymsg').hidden=false">
                             reply</button>
-                        <h5 class="msg">${message.content}${img}</h5>
+                        <p class="msg">${message.content}${img}</p>
                     </div>
                 </div>`
                 messages.push(message._id);
