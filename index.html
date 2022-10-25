@@ -34,7 +34,7 @@
             <div class="left">
                 <span class="status">◯</span>
                 <h1 class="header-logo">.\ /.</h1>
-                <p class="talk">< preparing the hatred</p>
+                <p class="reva-speech">< preparing the hatred</p>
             </div>
 
             <div class="right">
@@ -229,7 +229,8 @@
             display: flex;
             flex-direction: column;
             margin-left: 3rem;
-            width: 100%;
+            /* width: 100%; */
+            flex: auto;
         }
 
         #channelDesc{
@@ -297,6 +298,7 @@
         let istyping = false;
         let messcont;
         let errortimeout;
+        const revaPrompt = "< ";
 
         if(localStorage.getItem("token") !=undefined){
                     thetoken=localStorage.getItem("token");
@@ -390,11 +392,13 @@
         async function showError(error) {
             try { clearTimeout(errortimeout); } catch (error) { }
             document.getElementById("loginerror").innerText = error;
-            document.getElementById("error").innerText = error;
+            // document.getElementById("error").innerText = error;
+            document.querySelector(".reva-prompt").textContent = error;
             document.getElementById("loginerror").hidden = false;
-            document.getElementById("error").hidden = false;
+            // document.getElementById("error").hidden = false;
             errortimeout = setTimeout(function () {
-                document.getElementById('error').hidden = true;
+                // document.getElementById('error').hidden = true;
+                document.querySelector(".reva-prompt").textContent = "";
                 document.getElementById('loginerror').hidden = true;
             }, 10000);
         }
