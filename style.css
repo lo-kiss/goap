@@ -61,7 +61,7 @@ button:hover {
 .login-put, .input-bar {
     border: 3px solid;
     background: black;
-    color: var(--foreground);
+    color: currentColor;
     font-size: 1.2rem;
     outline: none;
     line-height: 200%;
