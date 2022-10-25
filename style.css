@@ -1,9 +1,5 @@
 @import url('https://api.fonts.coollabs.io /css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-:root {
-    --secondary-background: #1A1A1A;
-}
-
 *{
     margin: 0;
     box-sizing: border-box;
@@ -12,10 +8,9 @@
 body{
     background: black;
     color: hsl(0, 0%, 90%);
-    /* font-family: Arial, Helvetica, sans-serif; */
     font-family: 'Roboto', sans-serif;
     width: 100%;
-    max-height: 100vh;
+    height: 100vh;
 }
 
 a{
@@ -23,6 +18,20 @@ a{
     font-weight: bold;
 }
 
+button{
+    color: currentColor;
+    background: hsl(0, 0%, 15%);
+    border-radius: 3px;
+    border: 2px solid transparent;
+    padding: .4rem 0;
+}
+
+button:hover {
+    background: hsl(0, 0%, 5%);
+    border: 2px solid hsl(0, 0%, 10%);
+}
+
+/* LOGIN */
 .login-section{
     display: grid;
     place-content: center;
@@ -60,6 +69,13 @@ a{
     width: 400px;
 }
 
+/* APP */
+#logged {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100vh;
+}
+
 header{
     width: 100%;
     height: 3.5rem;
@@ -83,16 +99,17 @@ header .status{
     color: red;
 }
 
-#logged {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 100vh;
-}
-
 main{
     display: flex;
     padding-top: 1rem;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    word-break: break-all !important;
 }
 
 #chnnelInfo{
@@ -121,7 +138,6 @@ main{
 
 .msg,
 .messagecont {
-    word-break: break-all;
     white-space: pre-wrap;
     padding-bottom: 5px;
     max-width: 80% !important;
@@ -145,17 +161,7 @@ main{
 }
 
 #channelDesc{
-    font-size: 1rem;
-}
-
-#info {
-    padding: 1rem;
-    word-break: break-all !important;
-}
-
-button:hover {
-    text-shadow: 0 -1px 0 darken(var(--accent), 15%);
-    background: lighten(var(--accent), 5%);
+    font-size: 0.8rem;
 }
 
 .messagecont,
@@ -165,26 +171,16 @@ button:hover {
 }
 
 #replymsg {
-    padding-bottom: 0px;
     display: block
-}
-
-img {
-    max-width: 600px;
 }
 
 #messages {
     font-size: 0.9em;
     overflow: auto;
     backface-visibility: hidden;
-    height: 45vw;
+    height: 70vh;
 }
 
-#channels {
-    border: medium solid;
-}
-
-button {
-    background-color: var(--secondary-background);
-    color: var(--foreground)
+img {
+    max-width: 600px;
 }
