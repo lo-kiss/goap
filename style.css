@@ -1,0 +1,190 @@
+@import url('https://api.fonts.coollabs.io /css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+    --secondary-background: #1A1A1A;
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: black;
+    color: hsl(0, 0%, 90%);
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    max-height: 100vh;
+}
+
+a{
+    color: currentColor;
+    font-weight: bold;
+}
+
+.login-section{
+    display: grid;
+    place-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.login-logo{
+    color: red;
+    font-size: 5rem;
+    margin-bottom: 3rem;
+}
+
+.name{
+    font-size: 3.5rem;
+    text-transform: uppercase;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.login-put, .input-bar {
+    border: 3px solid;
+    background: black;
+    color: var(--foreground);
+    font-size: 1.2rem;
+    outline: none;
+    line-height: 200%;
+    padding-left: 0.5rem;
+    width: 400px;
+}
+
+header{
+    width: 100%;
+    height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid hsl(0, 0%, 50%);
+    padding: 0 1rem;
+}
+
+header .left, header .right{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-logo{
+    color: red;
+}
+
+header .status{
+    color: red;
+}
+
+#logged {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+main{
+    display: flex;
+    padding-top: 1rem;
+}
+
+#chnnelInfo{
+    max-width: 13em;
+}
+
+#closereply {
+    display: none
+}
+
+[id^=server],
+[id^=chan],
+[id^=dm] {
+    width: 15em;
+    outline: 0;
+    border-color: rgba(0, 0, 0, 0)
+}
+
+[id^=chan]{
+    width: 100%;
+}
+
+#dms, #servers{
+    width: 100%;
+}
+
+.msg,
+.messagecont {
+    word-break: break-all;
+    white-space: pre-wrap;
+    padding-bottom: 5px;
+    max-width: 80% !important;
+}
+
+.msg{
+    color: hsl(0, 0%, 65%);
+}
+
+#author {
+    color: hsl(0, 0%, 90%);
+    display: inline-block;
+}
+
+#central {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+    /* width: 100%; */
+    flex: auto;
+}
+
+#channelDesc{
+    font-size: 1rem;
+}
+
+#info {
+    padding: 1rem;
+    word-break: break-all !important;
+}
+
+button:hover {
+    text-shadow: 0 -1px 0 darken(var(--accent), 15%);
+    background: lighten(var(--accent), 5%);
+}
+
+.messagecont,
+.message {
+    white-space: nowrap;
+    display: block;
+}
+
+#replymsg {
+    padding-bottom: 0px;
+    display: block
+}
+
+img {
+    max-width: 600px;
+}
+
+#messages {
+    font-size: 0.9em;
+    overflow: auto;
+    backface-visibility: hidden;
+    height: 45vw;
+}
+
+#channels {
+    border: medium solid;
+}
+
+button {
+    background-color: var(--secondary-background);
+    color: var(--foreground)
+}
