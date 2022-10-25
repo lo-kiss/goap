@@ -32,7 +32,7 @@
     <div id="logged" hidden="true">
         <header>
             <div class="left">
-                <span class="status">●</span>
+                <span class="status">◯</span>
                 <h1 class="header-logo">.\ /.</h1>
                 <p class="talk">< preparing the hatred</p>
             </div>
@@ -342,6 +342,7 @@
                 if (data.type == "Authenticated") {
                     document.getElementById("connected").innerText = "Connected"
                     document.querySelector(".status").style.color = "hsl(114,81%,46%)";
+                    document.querySelector(".status").textContent = "●";
                 } else if (data.type == "Message") {
                     if (data.channel == thechannel) {
                         parsemessage(data);
@@ -359,6 +360,7 @@
             socket.addEventListener('error', function (event) {
                 document.getElementById("connected").innerText = "Disconnected"
                 document.querySelector(".status").style.color = "red";
+                document.querySelector(".status").textContent = "⊖";
                 showError("Disconnected")
             });
 
