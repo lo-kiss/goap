@@ -630,7 +630,6 @@
 
         async function parsemessage(message) {
             try {
-                let pfpsrc = ""
                 let username = ""
                 let img = ""
                 let replyinmsg = ""
@@ -681,7 +680,6 @@
                             uIDs.push(data._id)
                         });
                 } else {
-                    pfpsrc = pfpsrcs[uIDs.indexOf(message.author)]
                     username = usernames[uIDs.indexOf(message.author)]
                 }
                 if(message.reactions){
@@ -694,8 +692,7 @@
                 <div class="messagecont" onclick="button=document.getElementById('reply${message._id}'); if(button.hidden){button.hidden=false}else{button.hidden=true}">
                     <h6 hidden="${replymsg != "" ? "true" : "false"}" id="replymsg">${replyinmsg}</h6>
                     <div class="message">
-                        ${lastmessage != message.author ? `<img src="${pfpsrc}" class="pfp"></img>
-                        <h4 id="author">${username}</h4>` : ""}
+                        ${lastmessage != message.author ? `<h4 id="author">${username}</h4>` : ""}
                         <button hidden=true class="reply" id="reply${message._id}" onclick="
                         reply='${message._id}';
                         document.getElementById('replymsg').innerText='> ${message.content}';
@@ -741,11 +738,6 @@
                 if(uIDs.indexOf(users[i]._id) === -1){
                     uIDs.push(users[i]._id)
                     usernames.push(users[i].username)
-                    if(users[i].avatar){
-                        pfpsrcs.push(`https://autumn.revolt.chat/avatars/${users[i].avatar._id}/${users[i].avatar.filename}`)
-                    } else {
-                        pfpsrcs.push(`https://autumn.revolt.chat/avatars/${users[i]._id}/default_avatar`)
-                    }
                 }
             }
             mess.reverse()
