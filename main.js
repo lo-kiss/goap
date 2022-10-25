@@ -111,12 +111,12 @@ async function showError(error) {
     try { clearTimeout(errortimeout); } catch (error) { }
     document.getElementById("loginerror").innerText = error;
     // document.getElementById("error").innerText = error;
-    document.querySelector(".reva-prompt").textContent = error;
+    document.querySelector(".reva-speech").textContent = revaPrompt + error;
     document.getElementById("loginerror").hidden = false;
     // document.getElementById("error").hidden = false;
     errortimeout = setTimeout(function () {
         // document.getElementById('error').hidden = true;
-        document.querySelector(".reva-prompt").textContent = "";
+        document.querySelector(".reva-speech").textContent = "";
         document.getElementById('loginerror').hidden = true;
     }, 10000);
 }
