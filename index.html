@@ -30,45 +30,61 @@
         -->
     </section>
     <div id="logged" hidden="true">
-        <div id="info">
-            <button id="dms" onclick="getdms()">DMS</button>
-            <div id="servers"></div>
-        </div>
-
-        <div id="chnnelInfo">
-            <h3 id="connected">Disconnected</h3>
-            <h2 id="chanName"></h2>
-            <h3 id="chanDesc"></h3>
-            <div id="channels"></div>
-        </div>
-
-        <div id="central">
-            <div id="messages" hidden="true">
-            </div>
-            <input type="text" autocomplete="off" placeholder="Title" id="title" hidden="true" />
-            <input type="text" autocomplete="off" placeholder="Description" id="desc" hidden="true" />
-            <input type="text" autocomplete="off" placeholder="Color" id="color" hidden="true" />
-            <h5 id="error" hidden="true"></h5>
-
-            <div class="toolbar">
-                <h5 id="replymsg" style="display:inline" hidden="true"></h5><button style="display:inline" hidden="true"
-                    id=closereply onclick="document.getElementById('replymsg').innerText='';reply=''">X</button>
-                <input type="file" id="upload"></input>
-
-                <br>
-
-                <button onclick="bonfire()">Re-establish websocket</button>
-                <button onclick="getmessage()">Get messages</button>
-                <button onclick="uIDs=[];usernames=[];pfpsrcs=[];getmessage();">Reload Usernames</button>
-                <button onclick="embedmessage()">Send embed</button>
+        <header>
+            <div class="left">
+                <span class="status">●</span>
+                <h1 class="header-logo">.\ /.</h1>
+                <p class="talk">< preparing the hatred</p>
             </div>
 
-            <div id="messagebar">
-                <button onclick="contentToJson()">JSON</button>
-                <input class="input-bar" type="text" autocomplete="off" placeholder="Start wasting your time" id="input">
-                <button onclick="sendmessage()">Send</button>
+            <div class="right">
+                <span title="This project works locally. `Save page as` -> `Web page, complete`">ℹ</span>
+                <a href="https://github.com/lo-kiss/goap/">repo</a>
+                <a href="https://lo-kiss.github.io">loki</a>
             </div>
-        </div>
+        </header>
+
+        <main>
+            <div id="info">
+                <button id="dms" onclick="getdms()">DMS</button>
+                <div id="servers"></div>
+            </div>
+
+            <div id="chnnelInfo">
+                <h3 id="connected">Disconnected</h3>
+                <h2 id="chanName"></h2>
+                <p id="chanDesc"></p>
+                <div id="channels"></div>
+            </div>
+
+            <div id="central">
+                <div id="messages" hidden="true">
+                </div>
+                <input type="text" autocomplete="off" placeholder="Title" id="title" hidden="true" />
+                <input type="text" autocomplete="off" placeholder="Description" id="desc" hidden="true" />
+                <input type="text" autocomplete="off" placeholder="Color" id="color" hidden="true" />
+                <h5 id="error" hidden="true"></h5>
+
+                <div class="toolbar">
+                    <h5 id="replymsg" style="display:inline" hidden="true"></h5><button style="display:inline" hidden="true"
+                        id=closereply onclick="document.getElementById('replymsg').innerText='';reply=''">X</button>
+                    <input type="file" id="upload"></input>
+
+                    <br>
+
+                    <button onclick="bonfire()">Re-establish websocket</button>
+                    <button onclick="getmessage()">Get messages</button>
+                    <button onclick="uIDs=[];usernames=[];pfpsrcs=[];getmessage();">Reload Usernames</button>
+                    <button onclick="embedmessage()">Send embed</button>
+                </div>
+
+                <div id="messagebar">
+                    <button onclick="contentToJson()">JSON</button>
+                    <input class="input-bar" type="text" autocomplete="off" placeholder="Start wasting your time" id="input">
+                    <button onclick="sendmessage()">Send</button>
+                </div>
+            </div>
+        </main>
     </div>
     <style>
         @import url('https://api.fonts.coollabs.io /css2?family=Roboto:wght@300;400;500;700&display=swap');
@@ -89,6 +105,11 @@
             font-family: 'Roboto', sans-serif;
             width: 100%;
             max-height: 100vh;
+        }
+
+        a{
+            color: currentColor;
+            font-weight: bold;
         }
 
         .login-section{
@@ -128,11 +149,39 @@
             width: 400px;
         }
 
+        header{
+            width: 100%;
+            height: 3.5rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid hsl(0, 0%, 50%);
+            padding: 0 1rem;
+        }
+
+        header .left, header .right{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-logo{
+            color: red;
+        }
+
+        header .status{
+            color: red;
+        }
+
         #logged {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: flex-start;
             height: 100vh;
+        }
+
+        main{
+            display: flex;
+            padding-top: 1rem;
         }
 
         #chnnelInfo{
@@ -292,6 +341,7 @@
                 data = JSON.parse(event.data)
                 if (data.type == "Authenticated") {
                     document.getElementById("connected").innerText = "Connected"
+                    document.querySelector(".status").style.color = "hsl(114,81%,46%)";
                 } else if (data.type == "Message") {
                     if (data.channel == thechannel) {
                         parsemessage(data);
@@ -308,11 +358,13 @@
 
             socket.addEventListener('error', function (event) {
                 document.getElementById("connected").innerText = "Disconnected"
+                document.querySelector(".status").style.color = "red";
                 showError("Disconnected")
             });
 
             socket.onclose = function (event) {
                 document.getElementById("connected").innerText = "Disconnected";
+                document.querySelector(".status").style.color = "red";
                 showError("Disconnected")
             }
         }
