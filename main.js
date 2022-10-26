@@ -350,11 +350,13 @@ async function getdms() {
 }
 
 async function getserver(server) {
-
-    for (let i = 1; i < server.length; i++) {
+    for (let i = 0; i < server.length; i++) {
         document.getElementById(`servers`).innerHTML +=
-            `<button onclick="theserver = '${server[i - 1]._id}';getchannel()"
-        id="server${i}">${server[i - 1].name}</button>`;
+            `<button onclick="theserver = '${server[i]._id}';getchannel()"
+            id="server${i}">${server[i].name}</button>`;
+        document.querySelector("#selectServer").innerHTML +=
+            `<option onclick="theserver = '${server[i]._id}';getchannel()"
+            id="server${i}">${server[i].name}</option>`;
     }
 }
 
@@ -370,11 +372,11 @@ async function getchannel() {
     }).then(response => response.json())
         .then(data => chann = (data.channels))
     for (let i = 0; i < chann.length; i++) {
-        document.getElementById(`channels`).innerHTML += `<button onclick="
-        thechannel = '${chann[i]}';
-        clearmessages();
-        getmessage();"
-        id="chann${i}">${chann[i]}</button>`;
+        document.querySelector("#selectChannel").innerHTML +=
+            `<option onclick="thechannel = '${chann[i]}';
+            clearmessages();
+            getmessage();"
+            id="chann${i}">${chann[i]}</option>`;
     }
     for (let i = 0; i < chann.length; i++) {
         fetch(`https://api.revolt.chat/channels/${chann[i]}/`, {
@@ -434,12 +436,6 @@ async function parsemessage(message) {
                 "method": "GET",
             }).then(response => response.json())
                 .then(data => {
-                    if (data.avatar) {
-                        pfpsrc = `https://autumn.revolt.chat/avatars/${data.avatar._id}/${data.avatar.filename}`;
-                    }
-                    else {
-                        pfpsrc = `https://api.revolt.chat/users/${message.author}/default_avatar`
-                    }
                     username = data.username
                     pfpsrcs.push(pfpsrc)
                     usernames.push(data.username)
@@ -483,8 +479,8 @@ async function getmessage() {
         "method": "GET",
     }).then(response => response.json())
         .then(data => {
-            if (data.channel_type == "DirectMessage") { document.getElementById("chanName").innerText = data.recipients[0] } else { document.getElementById("chanName").innerText = data.name; }
-            if (data.description) { document.getElementById("chanDesc").innerText = data.description };
+            if (data.channel_type == "DirectMessage") { document.getElementById("chanName").innerText = data.recipients[0] } else { document.querySelector("#channelName").textContent = data.name + "⌄"; }
+            if (data.description) { document.querySelector(".channelDesc").textContent = data.description };
         })
 
     document.getElementById("messages").hidden = false;

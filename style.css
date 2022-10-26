@@ -25,7 +25,6 @@ a{
 button{
     color: currentColor;
     background: var(--alt-bg);
-    border-radius: 3px;
     border: 2px solid transparent;
     padding: .4rem 0;
 }
@@ -33,6 +32,10 @@ button{
 button:hover {
     background: var(--alt-bg);
     border: 2px solid hsl(0, 0%, 10%);
+}
+
+button, .login-put, .input-bar, .central-header, select{
+    border-radius: 3px;
 }
 
 /* LOGIN */
@@ -68,7 +71,6 @@ button:hover {
 
 .login-put, .input-bar {
     border: 2px solid transparent;
-    border-radius: 3px;
     background: var(--alt-bg);
     color: currentColor;
     font-size: 1rem;
@@ -170,6 +172,22 @@ main{
     margin-left: 3rem;
     /* width: 100%; */
     flex: auto;
+}
+
+.central-header{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--alt-bg);
+    padding: .7rem;
+}
+
+.central-header .left select{
+    background: hsl(0, 0%, 10%);
+    border: none;
+    color: currentColor;
+    padding: .2rem .5rem;
+    font-size: 1.2em;
 }
 
 #channelDesc{

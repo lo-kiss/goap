@@ -46,12 +46,22 @@
 
             <div id="chnnelInfo">
                 <h3 id="connected">Disconnected</h3>
-                <h2 id="chanName"></h2>
-                <p id="chanDesc"></p>
                 <div id="channels"></div>
             </div>
 
             <div id="central">
+                <div class="central-header">
+                    <div class="left">
+                        <select id="selectServer" name="serverSelect">
+                            <option value="default" selected>Server</option>
+                        </select>
+                        <span class="sep">></span>
+                        <select id="selectChannel" name="selectChannel">
+                            <option  value="default" selected>Channel</option>
+                        </select>
+                    </div>
+                    <p class="channelDesc">hhuhuhuhuhuh</p>
+                </div>
                 <div id="messages" hidden="true">
                 </div>
                 <input type="text" autocomplete="off" placeholder="Title" id="title" hidden="true" />
