@@ -8,7 +8,6 @@ let reply = "";
 let image = "";
 let theuser = "";
 let messages = [];
-let pfpsrcs = [];
 let thetoken;
 let tm;
 let socket;
@@ -16,6 +15,7 @@ let typingtimeout;
 let istyping = false;
 let messcont;
 let errortimeout;
+let connected = false;
 const revaPrompt = "< ";
 
 if(localStorage.getItem("token") !=undefined){
@@ -60,7 +60,7 @@ async function bonfire() {
     socket.addEventListener('message', function (event) {
         data = JSON.parse(event.data)
         if (data.type == "Authenticated") {
-            document.getElementById("connected").innerText = "Connected"
+            connected = true;
             document.querySelector(".status").style.color = "hsl(114,81%,46%)";
             document.querySelector(".status").textContent = "●";
         } else if (data.type == "Message") {
@@ -78,14 +78,13 @@ async function bonfire() {
     });
 
     socket.addEventListener('error', function (event) {
-        document.getElementById("connected").innerText = "Disconnected"
+        connected = false;
         document.querySelector(".status").style.color = "red";
-        document.querySelector(".status").textContent = "⊖";
         showError("Disconnected")
     });
 
     socket.onclose = function (event) {
-        document.getElementById("connected").innerText = "Disconnected";
+        connected = false;
         document.querySelector(".status").style.color = "red";
         showError("Disconnected")
     }
@@ -94,9 +93,10 @@ async function bonfire() {
 function ping() {
     socket.send('{"type":"Ping","data":0}');
     tm = setTimeout(async function () {
-        document.getElementById("connected").innerText = "Disconnected";
+        connected = false;
+        document.querySelector(".status").style.color = "red";
         showError("Disconnected")
-        while (document.getElementById("connected") == "Disconnected") {
+        while (connected == false) {
             try { bonfire(); } catch (error) { showError(error) }
             await sleep(5000);
         }
@@ -110,12 +110,9 @@ function pong() {
 async function showError(error) {
     try { clearTimeout(errortimeout); } catch (error) { }
     document.getElementById("loginerror").innerText = error;
-    // document.getElementById("error").innerText = error;
     document.querySelector(".reva-speech").textContent = revaPrompt + error;
     document.getElementById("loginerror").hidden = false;
-    // document.getElementById("error").hidden = false;
     errortimeout = setTimeout(function () {
-        // document.getElementById('error').hidden = true;
         document.querySelector(".reva-speech").textContent = "";
         document.getElementById('loginerror').hidden = true;
     }, 10000);
@@ -351,9 +348,6 @@ async function getdms() {
 
 async function getserver(server) {
     for (let i = 0; i < server.length; i++) {
-        document.getElementById(`servers`).innerHTML +=
-            `<button onclick="theserver = '${server[i]._id}';getchannel()"
-            id="server${i}">${server[i].name}</button>`;
         document.querySelector("#selectServer").innerHTML +=
             `<option onclick="theserver = '${server[i]._id}';getchannel()"
             id="server${i}">${server[i].name}</option>`;
@@ -361,7 +355,7 @@ async function getserver(server) {
 }
 
 async function getchannel() {
-    document.getElementById(`channels`).innerHTML = ""
+    // document.querySelector("#selectChannel").innerHTML = "";
     await fetch(`https://api.revolt.chat/servers/${theserver}/`, {
         "credentials": "omit",
         "headers": {
@@ -423,7 +417,6 @@ async function parsemessage(message) {
         if (message.masquerade) {
             try {
                 username = message.masquerade.name;
-                pfpsrc = message.masquerade.avatar;
             } catch (error) { showError(JSON.stringify(message) + error) }
         } else if (uIDs.indexOf(message.author) === -1) {
             await fetch(`https://api.revolt.chat/users/${message.author}`, {
@@ -437,7 +430,6 @@ async function parsemessage(message) {
             }).then(response => response.json())
                 .then(data => {
                     username = data.username
-                    pfpsrcs.push(pfpsrc)
                     usernames.push(data.username)
                     uIDs.push(data._id)
                 });
