@@ -1,7 +1,7 @@
 @import url('https://api.fonts.coollabs.io /css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root{
-    --alt-bg: hsl(0, 0%, 6%);
+    --alt-bg: hsl(0, 0%, 9%);
 }
 
 *{
@@ -95,7 +95,7 @@ header{
     height: 3.5rem;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid hsl(0, 0%, 50%);
+    border-bottom: 1px solid hsl(0, 0%, 30%);
     padding: 0 1rem;
 }
 
@@ -183,7 +183,7 @@ main{
 }
 
 .central-header .left select{
-    background: hsl(0, 0%, 10%);
+    background: hsl(0, 0%, 14%);
     border: none;
     color: currentColor;
     padding: .2rem .5rem;
