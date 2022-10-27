@@ -114,8 +114,10 @@ header .status{
 }
 
 main{
+    width: 100%;
+    height: 100%;
     display: flex;
-    padding-top: 1rem;
+    padding: 1rem;
 }
 
 #info {
@@ -169,7 +171,6 @@ main{
 #central {
     display: flex;
     flex-direction: column;
-    margin-left: 3rem;
     /* width: 100%; */
     flex: auto;
 }
@@ -209,6 +210,20 @@ main{
     overflow: auto;
     backface-visibility: hidden;
     height: 70vh;
+    padding: 1rem;
+}
+
+#messagebar{
+    width: 100%;
+    display:flex;
+}
+
+#messagebar > *{
+    border-radius: 0;
+}
+
+.input-bar{
+    flex: auto;
 }
 
 img {

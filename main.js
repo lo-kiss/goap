@@ -475,7 +475,6 @@ async function getmessage() {
             if (data.description) { document.querySelector(".channelDesc").textContent = data.description };
         })
 
-    document.getElementById("messages").hidden = false;
     document.getElementById("messages").innerHTML = "";
     await fetch(`https://api.revolt.chat/channels/${thechannel}/messages?include_users=true`, {
         "credentials": "omit",
