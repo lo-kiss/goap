@@ -157,6 +157,7 @@ main{
 
 .msg{
     color: hsl(0, 0%, 65%);
+    word-wrap: anywhere;
 }
 
 #author {
@@ -198,7 +199,13 @@ main{
 }
 
 #replymsg {
-    display: block
+    display: block;
+    width: 700px;
+    font-size: smaller;
+    font-style: italic;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #messages {
