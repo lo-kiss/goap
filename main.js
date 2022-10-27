@@ -444,9 +444,9 @@ async function parsemessage(message) {
         }
         document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + `
         <div class="messagecont" onclick="button=document.getElementById('reply${message._id}'); if(button.hidden){button.hidden=false}else{button.hidden=true}">
-            <p hidden="${replymsg != "" ? "true" : "false"}" id="replymsg">${replyinmsg}</p>
             <div class="message">
                 ${lastmessage != message.author ? `<h4 id="author">${username}</h4>` : ""}
+                <p hidden="${replymsg != "" ? "true" : "false"}" id="replymsg">${replyinmsg}</p>
                 <button hidden=true class="reply" id="reply${message._id}" onclick="
                 reply='${message._id}';
                 document.getElementById('replymsg').innerText='> ${message.content}';
