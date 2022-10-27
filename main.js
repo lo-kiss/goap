@@ -415,7 +415,7 @@ async function parsemessage(message) {
         let replyinmsg = ""
         if (message.attachments) {
             image = message.attachments;
-            img = `<br><img src="https://autumn.revolt.chat/attachments/${image[0]._id}/${image[0].filename}">`
+            img = `<br><a href="https://autumn.revolt.chat/attachments/${image[0]._id}/${image[0].filename}" target="_blank"><img src="https://autumn.revolt.chat/attachments/${image[0]._id}/${image[0].filename}"></a>`
         }
         if (message.replies) {
             if (messages.indexOf(!message.replies[0]._id) == -1) {
