@@ -119,7 +119,7 @@ async function showError(error) {
 }
 
 async function uploadToAutumn() {
-    const files = document.getElementById("upload").files
+    const files = document.querySelector("#file").files
     const formData = new FormData()
     formData.append('myFile', files[0])
 
@@ -185,7 +185,7 @@ async function sendmessage() {
             message = message.replace(pings[i], `<@${uIDs[usernames.indexOf(pings[i].replace("@", ""))]}>`)
         }
     }
-    if (!(embedSend || sendRawJson || reply != "" || document.getElementById("upload").files[0])) {
+    if (!(embedSend || sendRawJson || reply != "" || document.querySelector("#file").files[0])) {
         fetch("https://api.revolt.chat/channels/" + thechannel + "/messages", {
             "credentials": "omit",
             "headers": {
@@ -220,7 +220,7 @@ async function sendmessage() {
             document.getElementById('replymsg').innerText = '';
             document.getElementById('replymsg').hidden = true
         } else {
-            if (document.getElementById("upload").files[0]) {
+            if (document.querySelector("#file").files[0]) {
                 await uploadToAutumn();
                 await fetch("https://api.revolt.chat/channels/" + thechannel + "/messages", {
                     "credentials": "omit",
@@ -235,7 +235,7 @@ async function sendmessage() {
         }`,
                     "method": "POST"
                 })
-                var file = document.getElementById("upload");
+                var file = document.querySelector("#file");
                 file.value = file.defaultValue;
                 image = ""
                 document.getElementById("input").value = ""
@@ -305,30 +305,48 @@ async function getdms() {
         .then(response => response.json())
         .then(data => dm = (data))
         .catch(error => { showError(error) });
-    document.getElementById('channels').innerHTML = "";
+    document.querySelector('#selectDM').innerHTML = "";
     for (let i = 0; i < dm.length; i++) {
         try {
             if (dm[i].channel_type == "Group") {
-                document.getElementById('channels').innerHTML = `<button onclick="
-                theserver='';
-                clearmessages();
-                thechannel = '${dm[i]._id}';
-                getmessage()"
-                id="dm${i}">${dm[i]["name"]}</button>`
-                    + document.getElementById('channels').innerHTML
+                document.querySelector("#selectDM").innerHTML =
+                    `<option onclick="
+                        theserver='';
+                        clearmessages();
+                        thechannel = '${dm[i]._id}';
+                        getmessage()"
+                        id="dm${i}">${dm[i]["name"]}<option>`
+                    + document.querySelector("#selectDM").innerHTML;
+
+                // document.querySelector('#selectDM').innerHTML = `<button onclick="
+                // theserver='';
+                // clearmessages();
+                // thechannel = '${dm[i]._id}';
+                // getmessage()"
+                // id="dm${i}">${dm[i]["name"]}</button>`
+                //     + document.getElementById('channels').innerHTML
             } else {
                 if (dm[i].recipients[0] == theuser._id) {
                     id = dm[i].recipients[1]
                 } else {
                     id = dm[i].recipients[0]
                 }
-                document.getElementById('channels').innerHTML = `<button onclick="
-                theserver='';
-                clearmessages();
-                thechannel = '${dm[i]._id}';
-                getmessage()"
-                id="dm${i}">${id}</button>`
-                    + document.getElementById('channels').innerHTML
+                document.querySelector("#selectDM").innerHTML =
+                    `<option onclick="
+                        theserver='';
+                        clearmessages();
+                        thechannel = '${dm[i]._id}';
+                        getmessage()"
+                        id="dm${i}">${dm[i]["name"]}<option>`
+                    + document.querySelector("#selectDM").innerHTML;
+
+                // document.getElementById('channels').innerHTML = `<button onclick="
+                // theserver='';
+                // clearmessages();
+                // thechannel = '${dm[i]._id}';
+                // getmessage()"
+                // id="dm${i}">${id}</button>`
+                //     + document.getElementById('channels').innerHTML
 
                 fetch("https://api.revolt.chat/users/" + id, {
                     "credentials": "omit",
@@ -436,12 +454,12 @@ async function parsemessage(message) {
         } else {
             username = usernames[uIDs.indexOf(message.author)]
         }
-        if(message.reactions){
-            console.log(message.reactions)
-            for(let i=0;i<message.reactions.length;i++){
-                console.log(message.reactions[i])
-            }
-        }
+        // if(message.reactions){
+        //     console.log(message.reactions)
+        //     for(let i=0;i<message.reactions.length;i++){
+        //         console.log(message.reactions[i])
+        //     }
+        // }
         document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + `
         <div class="messagecont" onclick="button=document.getElementById('reply${message._id}'); if(button.hidden){button.hidden=false}else{button.hidden=true}">
             <div class="message">
@@ -471,7 +489,7 @@ async function getmessage() {
         "method": "GET",
     }).then(response => response.json())
         .then(data => {
-            if (data.channel_type == "DirectMessage") { document.getElementById("chanName").innerText = data.recipients[0] } else { document.querySelector("#channelName").textContent = data.name + "⌄"; }
+            // if (data.channel_type == "DirectMessage") { document.getElementById("chanName").innerText = data.recipients[0] } else { document.querySelector("#channelName").textContent = data.name + "⌄"; }
             if (data.description) { document.querySelector(".channelDesc").textContent = data.description };
         })
 

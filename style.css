@@ -19,14 +19,14 @@ a{
     font-weight: bold;
 }
 
-button{
+button, .inputfile-label{
     color: currentColor;
     background: var(--alt-bg);
     border: 2px solid transparent;
-    padding: .4rem 0;
+    padding: .4rem .2rem;
 }
 
-button:hover {
+button:hover, .inputfile-label:hover {
     background: var(--alt-bg);
     border: 2px solid hsl(0, 0%, 17%);
 }
@@ -123,17 +123,37 @@ main{
 .central-header{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
     background: var(--alt-bg);
     padding: .7rem;
 }
 
+.central-header .left{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .central-header .left select{
     background: hsl(0, 0%, 14%);
+    background: transparent;
     border: none;
     color: currentColor;
     padding: .2rem .5rem;
     font-size: 1.2em;
+}
+
+.central-header details summary{
+    color: hsl(0,0%,45%);
+    cursor: default;
+    user-select: none;
+}
+
+.channelDesc{
+    background: var(--alt-bg);
+    position: absolute;
+    padding: 1rem;
 }
 
 .messagecont,
@@ -172,7 +192,7 @@ main{
 }
 
 #messages {
-    font-size: 0.9em;
+    font-size: 1em;
     overflow: auto;
     backface-visibility: hidden;
     height: 70vh;
@@ -187,6 +207,15 @@ main{
 .input-bar{
     flex: auto;
 }
+
+/* .inputfile { */
+/*     width: 0.1px; */
+/*     height: 0.1px; */
+/*     opacity: 0; */
+/*     overflow: hidden; */
+/*     position: absolute; */
+/*     z-index: -1; */
+/* } */
 
 img {
     max-width: 600px;

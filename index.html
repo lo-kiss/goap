@@ -43,38 +43,47 @@
                 <button id="dms" onclick="getdms()">DMS</button>
                 <div class="central-header">
                     <div class="left">
+                        <select id="selectDM" name="selectDM">
+                            <option value="DMs" selected>DMs</option>
+                        </select>
+
+                        <span class="sep">|</span>
+
                         <select id="selectServer" name="serverSelect">
-                            <option value="default" selected>Server</option>
+                            <option value="Server" selected>Server</option>
                         </select>
+
                         <span class="sep">></span>
+
                         <select id="selectChannel" name="selectChannel">
-                            <option  value="default" selected>Channel</option>
+                            <option  value="Channel" selected>Channel</option>
                         </select>
+
+                        <details>
+                            <summary>Channel desc</summary>
+                            <p class="channelDesc">hhuhuhuhuhuh</p>
+                        </details>
                     </div>
-                    <p class="channelDesc">hhuhuhuhuhuh</p>
+                    <div class="right">
+                        <button class="refresh" onclick="uIDs=[];usernames=[];pfpsrcs=[];getmessage();">refresh</button>
+                    </div>
                 </div>
                 <div id="messages"></div>
-                <input type="text" autocomplete="off" placeholder="Title" id="title" hidden="true" />
-                <input type="text" autocomplete="off" placeholder="Description" id="desc" hidden="true" />
-                <input type="text" autocomplete="off" placeholder="Color" id="color" hidden="true" />
                 <h5 id="error" hidden="true"></h5>
 
                 <div class="toolbar">
-                    <h5 id="replymsg" style="display:inline" hidden="true"></h5><button style="display:inline" hidden="true"
+                    <h5 id="replymsg" style="display:inline" hidden="true"></h5>
+                    <button style="display:inline" hidden="true"
                         id=closereply onclick="document.getElementById('replymsg').innerText='';reply=''">X</button>
-                    <input type="file" id="upload"></input>
-
-                    <br>
 
                     <button onclick="bonfire()">Re-establish websocket</button>
-                    <button onclick="getmessage()">Get messages</button>
-                    <button onclick="uIDs=[];usernames=[];pfpsrcs=[];getmessage();">Reload Usernames</button>
-                    <button onclick="embedmessage()">Send embed</button>
+                    <input type="file" name="file" id="file" class="inputfile">
                 </div>
 
                 <div id="messagebar">
                     <button onclick="contentToJson()">JSON</button>
-                    <input class="input-bar" type="text" autocomplete="off" placeholder="Start wasting your time" id="input">
+                    <label class="inputfile-label" for="file">+</label>
+                    <input id="input" class="input-bar" type="text" autocomplete="off" placeholder="Start wasting your time">
                     <button onclick="sendmessage()">>>>></button>
                 </div>
             </div>
