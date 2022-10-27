@@ -31,11 +31,7 @@ button{
 
 button:hover {
     background: var(--alt-bg);
-    border: 2px solid hsl(0, 0%, 10%);
-}
-
-button, .login-put, .input-bar, .central-header, select{
-    border-radius: 3px;
+    border: 2px solid hsl(0, 0%, 17%);
 }
 
 /* LOGIN */
@@ -80,7 +76,7 @@ button, .login-put, .input-bar, .central-header, select{
 }
 
 .login-put:focus, .input-bar:focus{
-    border: 2px solid hsl(0, 0%, 10%);
+    border: 2px solid hsl(0, 0%, 16%);
 }
 
 /* APP */
@@ -216,10 +212,6 @@ main{
 #messagebar{
     width: 100%;
     display:flex;
-}
-
-#messagebar > *{
-    border-radius: 0;
 }
 
 .input-bar{
