@@ -110,13 +110,12 @@ main{
     width: 100%;
     height: 100%;
     display: flex;
-    padding: 1rem;
 }
 
 #central {
     display: flex;
     flex-direction: column;
-    /* width: 100%; */
+    justify-content: space-between;
     flex: auto;
 }
 
@@ -194,8 +193,8 @@ main{
     font-size: 1em;
     overflow: auto;
     backface-visibility: hidden;
-    height: 70vh;
-    padding: 1rem;
+    padding: 0 1rem;
+    flex: auto;
 }
 
 #messagebar{
