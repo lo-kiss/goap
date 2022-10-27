@@ -27,8 +27,9 @@ async function login() {
     if (document.getElementById("token").value) {
         thetoken = document.getElementById("token").value;
         localStorage.setItem("token",thetoken)
-    }
-    bonfire()
+    };
+    bonfire();
+    getdms();
     await fetch("https://api.revolt.chat/users/@me", {
         "credentials": "omit",
         "headers": {
@@ -305,7 +306,7 @@ async function getdms() {
         .then(response => response.json())
         .then(data => dm = (data))
         .catch(error => { showError(error) });
-    document.querySelector('#selectDM').innerHTML = "";
+    // document.querySelector('#selectDM').innerHTML = "";
     for (let i = 0; i < dm.length; i++) {
         try {
             if (dm[i].channel_type == "Group") {
@@ -315,7 +316,7 @@ async function getdms() {
                         clearmessages();
                         thechannel = '${dm[i]._id}';
                         getmessage()"
-                        id="dm${i}">${dm[i]["name"]}<option>`
+                        id="dm${i}">${dm[i]["name"]}</option>`
                     + document.querySelector("#selectDM").innerHTML;
 
                 // document.querySelector('#selectDM').innerHTML = `<button onclick="
@@ -332,12 +333,11 @@ async function getdms() {
                     id = dm[i].recipients[0]
                 }
                 document.querySelector("#selectDM").innerHTML =
-                    `<option onclick="
-                        theserver='';
+                    `<option onclick="theserver='';
                         clearmessages();
                         thechannel = '${dm[i]._id}';
                         getmessage()"
-                        id="dm${i}">${dm[i]["name"]}<option>`
+                        id="dm${i}">${id}</option>`
                     + document.querySelector("#selectDM").innerHTML;
 
                 // document.getElementById('channels').innerHTML = `<button onclick="
@@ -356,7 +356,7 @@ async function getdms() {
                     },
                     "method": "GET",
                 }).then(response => response.json())
-                    .then(data => document.getElementById(`dm${i}`).innerText = (data.username))
+                    .then(data => document.getElementById(`dm${i}`).textContent = (data.username))
             }
         } catch (error) {
             showError(error)
@@ -490,7 +490,11 @@ async function getmessage() {
     }).then(response => response.json())
         .then(data => {
             // if (data.channel_type == "DirectMessage") { document.getElementById("chanName").innerText = data.recipients[0] } else { document.querySelector("#channelName").textContent = data.name + "⌄"; }
-            if (data.description) { document.querySelector(".channelDesc").textContent = data.description };
+            if (data.description) {
+                document.querySelector(".channelDesc").textContent = data.description;
+            } else {
+                document.querySelector(".channelDesc").textContent = "No description";
+            };
         })
 
     document.getElementById("messages").innerHTML = "";

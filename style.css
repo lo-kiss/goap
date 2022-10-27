@@ -136,7 +136,6 @@ main{
 }
 
 .central-header .left select{
-    background: hsl(0, 0%, 14%);
     background: transparent;
     border: none;
     color: currentColor;
