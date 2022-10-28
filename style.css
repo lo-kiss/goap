@@ -10,6 +10,7 @@
 body{
     background: black;
     color: hsl(0, 0%, 90%);
+    font-family: 'RobotoRegular';
     width: 100%;
     height: 100vh;
 }
