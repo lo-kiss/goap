@@ -20,14 +20,14 @@ a{
     font-weight: bold;
 }
 
-button, .inputfile-label{
+button{
     color: currentColor;
     background: var(--alt-bg);
     border: 2px solid transparent;
     padding: .4rem .2rem;
 }
 
-button:hover, .inputfile-label:hover {
+button:hover{
     background: var(--alt-bg);
     border: 2px solid hsl(0, 0%, 17%);
 }
@@ -77,7 +77,7 @@ button:hover, .inputfile-label:hover {
     padding-left: 0.5rem;
 }
 
-.login-put:focus, .input-bar:focus{
+.login-put:focus{
     border: 2px solid hsl(0, 0%, 16%);
 }
 
@@ -209,6 +209,17 @@ main{
 
 .input-bar{
     flex: auto;
+    padding: 0.7rem 1rem;
+}
+
+.inputfile-label{
+    display: grid;
+    place-content: center;
+    padding: 0 1rem;
+    background: var(--alt-bg);
+    color: currentColor;
+    font-size: 1.7em;
+    cursor: pointer;
 }
 
 /* .inputfile { */
