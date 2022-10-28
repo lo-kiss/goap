@@ -367,13 +367,13 @@ async function getdms() {
 async function getserver(server) {
     for (let i = 0; i < server.length; i++) {
         document.querySelector("#selectServer").innerHTML +=
-            `<option onclick="theserver = '${server[i]._id}';getchannel()"
+            `<option value="${server[i].name}" onclick="theserver = '${server[i]._id}';getchannel()"
             id="server${i}">${server[i].name}</option>`;
     }
 }
 
 async function getchannel() {
-    // document.querySelector("#selectChannel").innerHTML = "";
+    document.querySelector("#selectChannel").innerHTML = '<option value="Channel" selected>Channel</option>';
     await fetch(`https://api.revolt.chat/servers/${theserver}/`, {
         "credentials": "omit",
         "headers": {
