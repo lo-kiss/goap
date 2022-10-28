@@ -365,6 +365,8 @@ async function getdms() {
 }
 
 async function getserver(server) {
+    document.querySelector("#selectServer").innerHTML =
+        '<option value="Server" selected>Server</option>';
     for (let i = 0; i < server.length; i++) {
         document.querySelector("#selectServer").innerHTML +=
             `<option value="${server[i].name}" onclick="theserver = '${server[i]._id}';getchannel()"
