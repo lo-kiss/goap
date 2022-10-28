@@ -86,7 +86,8 @@ button:hover, .inputfile-label:hover {
 header{
     width: 100%;
     height: 3.5rem;
-    display: flex;
+    /* display: flex; */
+    display: none;
     justify-content: space-between;
     border-bottom: 1px solid hsl(0, 0%, 30%);
     padding: 0 1rem;
@@ -164,7 +165,7 @@ main{
     max-width: 80% !important;
 }
 
-.msg{
+.msg-content{
     color: hsl(0, 0%, 65%);
     word-wrap: anywhere;
 }

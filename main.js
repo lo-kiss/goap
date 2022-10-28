@@ -73,7 +73,7 @@ async function bonfire() {
         } else if (data.type == "Error") {
             if (data.error == "InvalidSession") { showError("INVALID TOKEN"); } else { showError(data.error); }
         } else if (data.type == "Ready") {
-            console.log(JSON.stringify(data.servers))
+            // console.log(JSON.stringify(data.servers))
             getserver(data.servers);
         }
     });
@@ -199,7 +199,7 @@ async function sendmessage() {
         }`,
             "method": "POST"
         })
-        document.getElementById("input").value = ""
+        document.getElementById("input").value = "";
     }
     else {
         if (reply != "") {
@@ -218,8 +218,8 @@ async function sendmessage() {
             })
             document.getElementById("input").value = "";
             reply = ""
-            document.getElementById('replymsg').innerText = '';
-            document.getElementById('replymsg').hidden = true
+            document.querySelector("#replymsg").innerText = '';
+            document.querySelector("#replymsg").hidden = true
         } else {
             if (document.querySelector("#file").files[0]) {
                 await uploadToAutumn();
@@ -467,10 +467,10 @@ async function parsemessage(message) {
                 <p hidden="${replymsg != "" ? "true" : "false"}" id="replymsg">${replyinmsg}</p>
                 <button hidden=true class="reply" id="reply${message._id}" onclick="
                 reply='${message._id}';
-                document.getElementById('replymsg').innerText='> ${message.content}';
-                document.getElementById('replymsg').hidden=false">
+                document.querySelector('#replymsg').textContent = '> ${message.content}';
+                document.querySelector('#replymsg').hidden=false">
                     reply</button>
-                <p class="msg">${message.content}${img}</p>
+                <p class="msg-content">${message.content}${img}</p>
             </div>
         </div>`
         messages.push(message._id);
