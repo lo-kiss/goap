@@ -23,6 +23,28 @@ if(localStorage.getItem("token") !=undefined){
             login();
 }
 
+const loginput = document.querySelector(".login-put");
+const logerror = document.querySelector("#loginerror");
+
+function checkToken(event){
+    event.preventDefault();
+    if (loginput.value == "cum") {
+        logerror.textContent = "The thing that made you. I wish it didn't.";
+    } else if (loginput.value == "amogus" || loginput.value == "amongus") {
+        logerror.textContent = "AMOGUS";
+        document.querySelector(".login-logo").style.color = "black";
+        document.querySelector(".login-section").style.background = "red";
+    } else if (loginput.value == "amogi") {
+        document.querySelector(".login-section").style.transform = "scale(.1)";
+    } else if (loginput.value.length < 64) {
+        logerror.textContent = "Token is too short. It has to be 64 characters";
+    } else if (loginput.value.length > 64) {
+        logerror.textContent = "Token is too long. It has to be 64 characters";
+    } else {
+        login();
+    };
+}
+
 async function login() {
     if (document.getElementById("token").value) {
         thetoken = document.getElementById("token").value;
