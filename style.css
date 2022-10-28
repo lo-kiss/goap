@@ -47,7 +47,7 @@ button:hover, .inputfile-label:hover {
 
 .login-logo{
     color: red;
-    font-size: 5rem;
+    defer font-size: 5rem;
     margin-bottom: 3rem;
 }
 
@@ -177,7 +177,6 @@ main{
 
 #author {
     color: hsl(0, 0%, 90%);
-    display: inline-block;
     padding-top: 10px;
 }
 
@@ -199,7 +198,7 @@ main{
     font-size: 1em;
     overflow: auto;
     backface-visibility: hidden;
-    padding: 0 1rem;
+    padding: 1rem 2rem;
     flex: auto;
 }
 
