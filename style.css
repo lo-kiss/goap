@@ -41,6 +41,10 @@ button:hover, .inputfile-label:hover {
     height: 100vh;
 }
 
+.login-logo, .name{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .login-logo{
     color: red;
     font-size: 5rem;
