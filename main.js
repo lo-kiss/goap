@@ -137,14 +137,9 @@ function pong() {
 async function showError(error) {
     try { clearTimeout(errortimeout); } catch (error) { }
     qs("#loginerror").innerText = error;
-    // qs(".reva-speech").textContent = revaPrompt + error;
-    qs("#error").hidden = false;
-    qs("#error").textContent = error;
+    revaSpeech(error);
     qs("#loginerror").hidden = false;
     errortimeout = setTimeout(function () {
-        // qs(".reva-speech").textContent = "";
-        qs("#error").hidden = true;
-        qs("#error").textContent = "";
         qs('#loginerror').hidden = true;
     }, 10000);
 }
@@ -568,4 +563,14 @@ function resetFile() {
     qs(".file-count").style.display = "none";
     qs(".file-name").textContent = "";
     console.log(fileInput.files);
+}
+
+function revaSpeech(speech) {
+    qs("#messages").innerHTML +=
+        `<div class="messagecont">
+            <div class="message">
+                <h4 id="author" style="color: red;">Reva</h4>
+                <p class="msg-content">${speech}</p>
+            </div>
+        </div>`
 }
