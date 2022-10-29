@@ -491,14 +491,14 @@ async function parsemessage(message) {
         qs("#messages").innerHTML = qs("#messages").innerHTML + `
         <div class="messagecont" onclick="button=document.getElementById('reply${message._id}'); if(button.hidden){button.hidden=false}else{button.hidden=true}">
             <div class="message">
-                ${lastmessage != message.author ? `<h4 id="author">${username}</h4>` : ""}
+                ${lastmessage != message.author ? `<h4 id="author">${escapeHTML(username)}</h4>` : ""}
                 <p hidden="${replymsg != "" ? "true" : "false"}" id="replymsg">${replyinmsg}</p>
                 <button hidden=true class="reply" id="reply${message._id}" onclick="
                 reply='${message._id}';
                 document.querySelector('#replymsg').textContent = '> ${message.content}';
                 document.querySelector('#replymsg').hidden=false">
                     reply</button>
-                <p class="msg-content">${message.content}${img}</p>
+                <p class="msg-content">${escapeHTML(message.content)}${img}</p>
             </div>
         </div>`
         messages.push(message._id);
@@ -574,4 +574,13 @@ function revaSpeech(speech) {
                 <p class="msg-content">${speech}</p>
             </div>
         </div>`
+}
+
+function escapeHTML(s) {
+    return s.replace(/&/, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/'/gm, '&apos;')
+        .replace(/"/g, '&quot;')
+        .replace(/\//g, '&sol;')
 }
