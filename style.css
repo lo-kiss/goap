@@ -222,17 +222,29 @@ main{
     cursor: pointer;
 }
 
-/* .inputfile { */
-/*     width: 0.1px; */
-/*     height: 0.1px; */
-/*     opacity: 0; */
-/*     overflow: hidden; */
-/*     position: absolute; */
-/*     z-index: -1; */
-/* } */
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
 
 img {
     max-width: 600px;
+}
+
+.file-count{
+    background: var(--alt-bg);
+    display: none;
+    padding: .3rem;
+}
+
+.file-count .cancel{
+    padding: 0;
+    background: none;
+    padding: 0 1rem;
 }
 
 /* MOBILE */

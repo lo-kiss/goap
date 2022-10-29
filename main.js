@@ -142,7 +142,7 @@ async function showError(error) {
     qs("#loginerror").hidden = false;
     errortimeout = setTimeout(function () {
         qs(".reva-speech").textContent = "";
-        qs('loginerror').hidden = true;
+        qs('#loginerror').hidden = true;
     }, 10000);
 }
 
@@ -267,6 +267,7 @@ async function sendmessage() {
                 file.value = file.defaultValue;
                 image = ""
                 qs("#input").value = ""
+                resetFile();
             } else {
                 if (embedSend) {
                     fetch("https://api.revolt.chat/channels/" + thechannel + "/messages", {
@@ -548,4 +549,20 @@ async function getmessage() {
     for (let i = 1; i <= mess.length; i++) {
         await parsemessage(mess[i - 1])
     }
+}
+
+let fileInput = qs("#file");
+fileInput.addEventListener("change", () => {
+    console.log(fileInput.files[0].name);
+    qs(".file-count").style.display = "flex";
+    qs(".file-name").textContent = fileInput.files[0].name + ` (${fileInput.files[0].size})`;
+}, false);
+
+qs(".cancel").addEventListener("click", resetFile, false);
+
+function resetFile() {
+    fileInput.value = "";
+    qs(".file-count").style.display = "none";
+    qs(".file-name").textContent = "";
+    console.log(fileInput.files);
 }
