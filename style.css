@@ -34,8 +34,10 @@ button:hover{
 
 /* LOGIN */
 .login-section, .mobile{
-    display: grid;
-    place-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     width: 100%;
     height: 100vh;
@@ -79,6 +81,11 @@ button:hover{
 
 .login-put:focus{
     border: 2px solid hsl(0, 0%, 16%);
+}
+
+.credits{
+    position: absolute;
+    bottom: 20px;
 }
 
 /* APP */
@@ -256,7 +263,7 @@ img {
 
 @media screen and (max-width: 750px) {
     .mobile{
-        display: grid;
+        display: flex;
     }
 
     .login-section{
