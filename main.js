@@ -504,6 +504,7 @@ async function parsemessage(message) {
         messages.push(message._id);
         messcont.push(message.content)
         lastmessage = message.author
+        qs("#messages").scrollTop = qs("#messages").scrollHeight;
     } catch (error) { showError(error) }
 }
 
