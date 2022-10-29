@@ -28,8 +28,8 @@ if(localStorage.getItem("token") !=undefined){
             login();
 }
 
-const loginput = document.querySelector(".login-put");
-const logerror = document.querySelector("#loginerror");
+const loginput = qs(".login-put");
+const logerror = qs("#loginerror");
 
 function checkToken(event){
     event.preventDefault();
@@ -37,10 +37,10 @@ function checkToken(event){
         logerror.textContent = "The thing that made you. I wish it didn't.";
     } else if (loginput.value == "amogus" || loginput.value == "amongus") {
         logerror.textContent = "AMOGUS";
-        document.querySelector(".login-logo").style.color = "black";
-        document.querySelector(".login-section").style.background = "red";
+        qs(".login-logo").style.color = "black";
+        qs(".login-section").style.background = "red";
     } else if (loginput.value == "amogi") {
-        document.querySelector(".login-section").style.transform = "scale(.1)";
+        qs(".login-section").style.transform = "scale(.1)";
     } else if (loginput.value.length < 64) {
         logerror.textContent = "Token is too short. It has to be 64 characters";
     } else if (loginput.value.length > 64) {
@@ -51,8 +51,8 @@ function checkToken(event){
 }
 
 async function login() {
-    if (document.getElementById("token").value) {
-        thetoken = document.getElementById("token").value;
+    if (qs("#token").value) {
+        thetoken = qs("#token").value;
         localStorage.setItem("token",thetoken)
     };
     bonfire();
@@ -68,9 +68,9 @@ async function login() {
         .then(response => response.json())
         .then(data => theuser = data)
         .catch(err => showError("INVALID TOKEN"))
-    document.querySelector(".login-section").style.display = "none";
-    document.getElementById("logged").hidden = false;
-    document.getElementById("logged").style.display = "flex";
+    qs(".login-section").style.display = "none";
+    qs("#logged").hidden = false;
+    qs("#logged").style.display = "flex";
 }
 
 async function bonfire() {
@@ -107,13 +107,13 @@ async function bonfire() {
 
     socket.addEventListener('error', function (event) {
         connected = false;
-        document.querySelector(".status").style.color = "red";
+        qs(".status").style.color = "red";
         showError("Disconnected")
     });
 
     socket.onclose = function (event) {
         connected = false;
-        document.querySelector(".status").style.color = "red";
+        qs(".status").style.color = "red";
         showError("Disconnected")
     }
 }
@@ -122,7 +122,7 @@ function ping() {
     socket.send('{"type":"Ping","data":0}');
     tm = setTimeout(async function () {
         connected = false;
-        document.querySelector(".status").style.color = "red";
+        qs(".status").style.color = "red";
         showError("Disconnected")
         while (connected == false) {
             try { bonfire(); } catch (error) { showError(error) }
@@ -137,17 +137,17 @@ function pong() {
 
 async function showError(error) {
     try { clearTimeout(errortimeout); } catch (error) { }
-    document.getElementById("loginerror").innerText = error;
-    document.querySelector(".reva-speech").textContent = revaPrompt + error;
-    document.getElementById("loginerror").hidden = false;
+    qs("#loginerror").innerText = error;
+    qs(".reva-speech").textContent = revaPrompt + error;
+    qs("#loginerror").hidden = false;
     errortimeout = setTimeout(function () {
-        document.querySelector(".reva-speech").textContent = "";
-        document.getElementById('loginerror').hidden = true;
+        qs(".reva-speech").textContent = "";
+        qs('loginerror').hidden = true;
     }, 10000);
 }
 
 async function uploadToAutumn() {
-    const files = document.querySelector("#file").files
+    const files = qs("#file").files
     const formData = new FormData()
     formData.append('myFile', files[0])
 
@@ -171,7 +171,7 @@ function embedmessage() {
     embedSend = true;
 }
 
-document.getElementById("input").onkeypress = function (event) {
+qs("#input").onkeypress = function (event) {
     if (event.keyCode == 13 || event.which == 13) {
         sendmessage();
     } else {
@@ -206,14 +206,14 @@ function sleep(ms) {
 }
 
 async function sendmessage() {
-    message = document.getElementById('input').value
+    message = qs('#input').value
     if (message.search(/ @[^ ]*/) != -1) {
         pings = /@[^ ]*/[Symbol.match](message)
         for (let i = 0; i < pings.length; i++) {
             message = message.replace(pings[i], `<@${uIDs[usernames.indexOf(pings[i].replace("@", ""))]}>`)
         }
     }
-    if (!(embedSend || sendRawJson || reply != "" || document.querySelector("#file").files[0])) {
+    if (!(embedSend || sendRawJson || reply != "" || qs("#file").files[0])) {
         fetch("https://api.revolt.chat/channels/" + thechannel + "/messages", {
             "credentials": "omit",
             "headers": {
@@ -226,7 +226,7 @@ async function sendmessage() {
         }`,
             "method": "POST"
         })
-        document.getElementById("input").value = "";
+        qs("#input").value = "";
     }
     else {
         if (reply != "") {
@@ -243,12 +243,12 @@ async function sendmessage() {
         }`,
                 "method": "POST"
             })
-            document.getElementById("input").value = "";
+            qs("#input").value = "";
             reply = ""
-            document.querySelector("#replymsg").innerText = '';
-            document.querySelector("#replymsg").hidden = true
+            qs("#replymsg").innerText = '';
+            qs("#replymsg").hidden = true
         } else {
-            if (document.querySelector("#file").files[0]) {
+            if (qs("#file").files[0]) {
                 await uploadToAutumn();
                 await fetch("https://api.revolt.chat/channels/" + thechannel + "/messages", {
                     "credentials": "omit",
@@ -263,10 +263,10 @@ async function sendmessage() {
         }`,
                     "method": "POST"
                 })
-                var file = document.querySelector("#file");
+                var file = qs("#file");
                 file.value = file.defaultValue;
                 image = ""
-                document.getElementById("input").value = ""
+                qs("#input").value = ""
             } else {
                 if (embedSend) {
                     fetch("https://api.revolt.chat/channels/" + thechannel + "/messages", {
@@ -305,7 +305,7 @@ async function sendmessage() {
                             "Content-Type": "application/json",
                             "x-session-token": thetoken
                         },
-                        "body": document.getElementById("input").value,
+                        "body": qs("#input").value,
                         "method": "POST"
                     })
                     sendRawJson = false;
@@ -317,7 +317,7 @@ async function sendmessage() {
 
 function clearmessages() {
     messages = [];
-    document.getElementById('messages').innerHTML = '';
+    qs('#messages').innerHTML = '';
     messcont = [];
 }
 
@@ -337,14 +337,14 @@ async function getdms() {
     for (let i = 0; i < dm.length; i++) {
         try {
             if (dm[i].channel_type == "Group") {
-                document.querySelector("#selectDM").innerHTML =
+                qs("#selectDM").innerHTML =
                     `<option onclick="
                         theserver='';
                         clearmessages();
                         thechannel = '${dm[i]._id}';
                         getmessage()"
                         id="dm${i}">${dm[i]["name"]}</option>`
-                    + document.querySelector("#selectDM").innerHTML;
+                    + qs("#selectDM").innerHTML;
 
                 // document.querySelector('#selectDM').innerHTML = `<button onclick="
                 // theserver='';
@@ -359,13 +359,13 @@ async function getdms() {
                 } else {
                     id = dm[i].recipients[0]
                 }
-                document.querySelector("#selectDM").innerHTML =
+                qs("#selectDM").innerHTML =
                     `<option onclick="theserver='';
                         clearmessages();
                         thechannel = '${dm[i]._id}';
                         getmessage()"
                         id="dm${i}">${id}</option>`
-                    + document.querySelector("#selectDM").innerHTML;
+                    + qs("#selectDM").innerHTML;
 
                 // document.getElementById('channels').innerHTML = `<button onclick="
                 // theserver='';
@@ -383,7 +383,7 @@ async function getdms() {
                     },
                     "method": "GET",
                 }).then(response => response.json())
-                    .then(data => document.getElementById(`dm${i}`).textContent = (data.username))
+                    .then(data => qs(`#dm${i}`).textContent = (data.username))
             }
         } catch (error) {
             showError(error)
@@ -392,17 +392,17 @@ async function getdms() {
 }
 
 async function getserver(server) {
-    document.querySelector("#selectServer").innerHTML =
+    qs("#selectServer").innerHTML =
         '<option value="Server" selected>Server</option>';
     for (let i = 0; i < server.length; i++) {
-        document.querySelector("#selectServer").innerHTML +=
+        qs("#selectServer").innerHTML +=
             `<option value="${server[i].name}" onclick="theserver = '${server[i]._id}';getchannel()"
             id="server${i}">${server[i].name}</option>`;
     }
 }
 
 async function getchannel() {
-    document.querySelector("#selectChannel").innerHTML = '<option value="Channel" selected>Channel</option>';
+    qs("#selectChannel").innerHTML = '<option value="Channel" selected>Channel</option>';
     await fetch(`https://api.revolt.chat/servers/${theserver}/`, {
         "credentials": "omit",
         "headers": {
@@ -413,7 +413,7 @@ async function getchannel() {
     }).then(response => response.json())
         .then(data => chann = (data.channels))
     for (let i = 0; i < chann.length; i++) {
-        document.querySelector("#selectChannel").innerHTML +=
+        qs("#selectChannel").innerHTML +=
             `<option onclick="thechannel = '${chann[i]}';
             clearmessages();
             getmessage();"
@@ -430,9 +430,9 @@ async function getchannel() {
         }).then(response => response.json())
             .then(data => {
                 if (data.channel_type === "VoiceChannel") {
-                    document.getElementById(`chann${i}`).remove(); return;
+                    qs(`#chann${i}`).remove(); return;
                 }
-                document.getElementById(`chann${i}`).innerText = data.name
+                qs(`#chann${i}`).innerText = data.name
             });
     }
 }
@@ -489,7 +489,7 @@ async function parsemessage(message) {
         //         console.log(message.reactions[i])
         //     }
         // }
-        document.getElementById("messages").innerHTML = document.getElementById("messages").innerHTML + `
+        qs("#messages").innerHTML = qs("#messages").innerHTML + `
         <div class="messagecont" onclick="button=document.getElementById('reply${message._id}'); if(button.hidden){button.hidden=false}else{button.hidden=true}">
             <div class="message">
                 ${lastmessage != message.author ? `<h4 id="author">${username}</h4>` : ""}
@@ -520,13 +520,13 @@ async function getmessage() {
         .then(data => {
             // if (data.channel_type == "DirectMessage") { document.getElementById("chanName").innerText = data.recipients[0] } else { document.querySelector("#channelName").textContent = data.name + "⌄"; }
             if (data.description) {
-                document.querySelector(".channelDesc").textContent = data.description;
+                qs(".channelDesc").textContent = data.description;
             } else {
-                document.querySelector(".channelDesc").textContent = "No description";
+                qs(".channelDesc").textContent = "No description";
             };
         })
 
-    document.getElementById("messages").innerHTML = "";
+    qs("#messages").innerHTML = "";
     await fetch(`https://api.revolt.chat/channels/${thechannel}/messages?include_users=true`, {
         "credentials": "omit",
         "headers": {
