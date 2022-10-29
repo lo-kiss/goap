@@ -252,7 +252,7 @@ img {
     display: none;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 750px) {
     .mobile{
         display: grid;
     }
