@@ -16,7 +16,6 @@ let istyping = false;
 let messcont;
 let errortimeout;
 let connected = false;
-const revaPrompt = "< ";
 
 /* Helper function */
 function qs(s){
@@ -138,10 +137,14 @@ function pong() {
 async function showError(error) {
     try { clearTimeout(errortimeout); } catch (error) { }
     qs("#loginerror").innerText = error;
-    qs(".reva-speech").textContent = revaPrompt + error;
+    // qs(".reva-speech").textContent = revaPrompt + error;
+    qs("#error").hidden = false;
+    qs("#error").textContent = error;
     qs("#loginerror").hidden = false;
     errortimeout = setTimeout(function () {
-        qs(".reva-speech").textContent = "";
+        // qs(".reva-speech").textContent = "";
+        qs("#error").hidden = true;
+        qs("#error").textContent = "";
         qs('#loginerror').hidden = true;
     }, 10000);
 }
