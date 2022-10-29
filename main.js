@@ -169,9 +169,17 @@ function embedmessage() {
     embedSend = true;
 }
 
+/* CUSTOM COMMANDS AND CHAT */
 qs("#input").onkeypress = function (event) {
+    let cmd = qs("#input").value;
     if (event.keyCode == 13 || event.which == 13) {
-        sendmessage();
+        if (cmd == "r.gh") {
+            revaSpeech(`<a href="https://github.com/lo-kiss/goap/" target="_blank">GOAP Github</a>
+<br> Forked from <a href="https://github.com/ERROR-404-NULL-NOT-FOUND/Retaped" target="_blank">Retaped</a>`);
+            qs("#input").value = "";
+        } else {
+            sendmessage();
+        }
     } else {
         if (!istyping) {
             clearTimeout(typingtimeout);
@@ -566,14 +574,15 @@ function resetFile() {
     console.log(fileInput.files);
 }
 
-function revaSpeech(speech) {
+function revaSpeech(speech, link) {
     qs("#messages").innerHTML +=
         `<div class="messagecont">
             <div class="message">
-                <h4 id="author" style="color: red;">Reva</h4>
+                <h4 id="author" style="color: red;">Reva .\\ /.</h4>
                 <p class="msg-content">${speech}</p>
             </div>
-        </div>`
+        </div>`;
+        qs("#messages").scrollTop = qs("#messages").scrollHeight;
 }
 
 function escapeHTML(s) {
