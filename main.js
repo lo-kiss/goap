@@ -18,6 +18,11 @@ let errortimeout;
 let connected = false;
 const revaPrompt = "< ";
 
+/* Helper function */
+function qs(s){
+    return document.querySelector(s);
+}
+
 if(localStorage.getItem("token") !=undefined){
             thetoken=localStorage.getItem("token");
             login();
