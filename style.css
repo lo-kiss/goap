@@ -253,7 +253,24 @@ img {
 .file-count .cancel{
     padding: 0;
     background: none;
-    padding: 0 1rem;
+    padding: 0 0.9rem;
+}
+
+.replying-cont{
+    display: none;
+    flex-direction: column;
+    background: var(--alt-bg);
+    padding: .3rem;
+}
+
+.replying{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cancel-reply{
+    padding: 0 0.9rem;
 }
 
 /* MOBILE */

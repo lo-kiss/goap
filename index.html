@@ -62,14 +62,21 @@
                 <h5 id="error" hidden="true"></h5>
 
                 <div class="toolbar">
-                    <h5 id="replymsg"></h5>
-                    <button style="display:inline" hidden="true"
-                        id=closereply onclick="document.getElementById('replymsg').innerText='';reply=''">X</button>
+                    <div class="replying-cont">
+                        <div class="replying">
+                            <button class="cancel-reply"
+                                    onclick="qs('.replying-cont').style.display='none';qs('.replying-msg').textContent='';reply=''">
+                                x</button>
+                            <p class="replying-msg">
+                                <b>lokicalmito:</b> this is a reply to a message
+                            </p>
+                        </div>
+                    </div>
 
                     <input type="file" name="file" id="file" class="inputfile">
                     <div class="file-count">
-                        <span class="file-name">file-name-placeholder.png</span>
                         <button class="cancel">x</button>
+                        <span class="file-name">file-name-placeholder.png</span>
                     </div>
                 </div>
 

@@ -22,6 +22,10 @@ function qs(s){
     return document.querySelector(s);
 }
 
+function autoScroll() {
+    qs("#messages").scrollTop = qs("#messages").scrollHeight;
+}
+
 if(localStorage.getItem("token") !=undefined){
             thetoken=localStorage.getItem("token");
             login();
@@ -131,6 +135,7 @@ function ping() {
 }
 
 function pong() {
+
     clearTimeout(tm);
 }
 
@@ -251,8 +256,8 @@ async function sendmessage() {
             })
             qs("#input").value = "";
             reply = ""
-            qs("#replymsg").innerText = '';
-            qs("#replymsg").hidden = true
+            qs(".replying-msg").innerText = '';
+            qs(".replying-cont").style.display = 'none';
         } else {
             if (qs("#file").files[0]) {
                 await uploadToAutumn();
@@ -497,14 +502,14 @@ async function parsemessage(message) {
         //     }
         // }
         qs("#messages").innerHTML = qs("#messages").innerHTML + `
-        <div class="messagecont" onclick="button=document.getElementById('reply${message._id}'); if(button.hidden){button.hidden=false}else{button.hidden=true}">
+        <div class="messagecont" onclick="button=qs('#reply${message._id}'); if(button.hidden){button.hidden=false}else{button.hidden=true}">
             <div class="message">
                 ${lastmessage != message.author ? `<h4 id="author">${escapeHTML(username)}</h4>` : ""}
-                <p hidden="${replymsg != "" ? "true" : "false"}" id="replymsg">${replyinmsg}</p>
+                <p hidden="${qs('.replying-msg') != "" ? "true" : "false"}" id="replymsg">${escapeHTML(replyinmsg)}</p>
                 <button hidden=true class="reply" id="reply${message._id}" onclick="
                 reply='${message._id}';
-                document.querySelector('#replymsg').textContent = '> ${message.content}';
-                document.querySelector('#replymsg').hidden=false">
+                qs('.replying-cont').style.display = 'flex';
+                qs('.replying-msg').textContent = '${escapeHTML(username)}: ${escapeHTML(message.content)}';">
                     reply</button>
                 <p class="msg-content">${escapeHTML(message.content)}${img}</p>
             </div>
@@ -512,7 +517,7 @@ async function parsemessage(message) {
         messages.push(message._id);
         messcont.push(message.content)
         lastmessage = message.author
-        qs("#messages").scrollTop = qs("#messages").scrollHeight;
+        autoScroll();
     } catch (error) { showError(error) }
 }
 
@@ -563,6 +568,7 @@ fileInput.addEventListener("change", () => {
     console.log(fileInput.files[0].name);
     qs(".file-count").style.display = "flex";
     qs(".file-name").textContent = fileInput.files[0].name + ` (${fileInput.files[0].size})`;
+    autoScroll();
 }, false);
 
 qs(".cancel").addEventListener("click", resetFile, false);
@@ -582,7 +588,7 @@ function revaSpeech(speech, link) {
                 <p class="msg-content">${speech}</p>
             </div>
         </div>`;
-        qs("#messages").scrollTop = qs("#messages").scrollHeight;
+    autoScroll();
 }
 
 function escapeHTML(s) {
