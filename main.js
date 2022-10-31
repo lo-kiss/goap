@@ -565,7 +565,6 @@ async function getmessage() {
 
 let fileInput = qs("#file");
 fileInput.addEventListener("change", () => {
-    console.log(fileInput.files[0].name);
     qs(".file-count").style.display = "flex";
     qs(".file-name").textContent = fileInput.files[0].name + ` (${fileInput.files[0].size})`;
     autoScroll();
