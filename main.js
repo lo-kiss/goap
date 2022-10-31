@@ -602,23 +602,21 @@ function escapeHTML(s) {
 }
 
 /* HATRED */
-while (isLogged) {
-    let time;
-    const firewall = document.querySelector(".firewall");
+let time;
+const firewall = document.querySelector(".firewall");
 
-    document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState == "visible") {
-            firewall.style.display = "flex";
-        }
-    });
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState == "visible") {
+        firewall.style.display = "flex";
+    }
+});
 
-    firewall.addEventListener("mouseover", () => {
-        time = setTimeout(() => {
-            firewall.style.display = "none";
-        }, 20.0 * 1000);
-    }, false);
+firewall.addEventListener("mouseover", () => {
+    time = setTimeout(() => {
+        firewall.style.display = "none";
+    }, 20.0 * 1000);
+}, false);
 
-    firewall.addEventListener("mouseout", () => {
-        clearTimeout(time);
-    }, false);
-}
+firewall.addEventListener("mouseout", () => {
+    clearTimeout(time);
+}, false);
