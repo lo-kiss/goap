@@ -275,7 +275,7 @@ img {
 }
 
 /* FIREWALL */
-.firewall{
+.firewall, .nightwall{
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -285,17 +285,21 @@ img {
     justify-content: center;
     background: black;
     text-align: center;
+    z-index: 98;
+}
+
+.nightwall{
     z-index: 99;
+    /* display: flex; */
 }
 
 .content{
     opacity: 0;
-    background: black;
     pointer-events: none;
     transition: .5s;
 }
 
-.firewall:hover > .content{
+.firewall:hover > .content, .nightwall:hover > .content{
     opacity: 1;
 }
 

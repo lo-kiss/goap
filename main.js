@@ -16,7 +16,6 @@ let istyping = false;
 let messcont;
 let errortimeout;
 let connected = false;
-let isLogged = false;
 
 /* Helper function */
 function qs(s){
@@ -75,7 +74,6 @@ async function login() {
     qs(".login-section").style.display = "none";
     qs("#logged").hidden = false;
     qs("#logged").style.display = "flex";
-    isLogged = true;
 }
 
 async function bonfire() {
@@ -620,3 +618,16 @@ firewall.addEventListener("mouseover", () => {
 firewall.addEventListener("mouseout", () => {
     clearTimeout(time);
 }, false);
+
+/* Night Wall */
+const nightwall = qs(".nightwall");
+let current = new Date();
+let hours = current.getHours();
+console.log(current.getHours());
+
+if (hours >= 23 || hours <= 8) {
+    qs(".login-section").remove();
+    qs("#logged").remove();
+    firewall.remove();
+    nightwall.style.display = "flex";
+}
