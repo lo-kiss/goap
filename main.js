@@ -16,6 +16,7 @@ let istyping = false;
 let messcont;
 let errortimeout;
 let connected = false;
+let isLogged = false;
 
 /* Helper function */
 function qs(s){
@@ -74,6 +75,7 @@ async function login() {
     qs(".login-section").style.display = "none";
     qs("#logged").hidden = false;
     qs("#logged").style.display = "flex";
+    isLogged = true;
 }
 
 async function bonfire() {
@@ -597,4 +599,26 @@ function escapeHTML(s) {
         .replace(/'/gm, '&apos;')
         .replace(/"/g, '&quot;')
         .replace(/\//g, '&sol;')
+}
+
+/* HATRED */
+while (isLogged) {
+    let time;
+    const firewall = document.querySelector(".firewall");
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState == "visible") {
+            firewall.style.display = "flex";
+        }
+    });
+
+    firewall.addEventListener("mouseover", () => {
+        time = setTimeout(() => {
+            firewall.style.display = "none";
+        }, 20.0 * 1000);
+    }, false);
+
+    firewall.addEventListener("mouseout", () => {
+        clearTimeout(time);
+    }, false);
 }
