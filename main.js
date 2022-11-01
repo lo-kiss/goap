@@ -601,7 +601,7 @@ function escapeHTML(s) {
 
 /* HATRED */
 let time;
-const firewall = document.querySelector(".firewall");
+const firewall = qs(".firewall");
 
 document.addEventListener("visibilitychange", () => {
     if (document.visibilityState == "visible") {
@@ -625,7 +625,7 @@ let current = new Date();
 let hours = current.getHours();
 console.log(current.getHours());
 
-if (hours >= 23 || hours <= 8) {
+if (hours >= 23 || hours <= 7) {
     qs(".login-section").remove();
     qs("#logged").remove();
     firewall.remove();
