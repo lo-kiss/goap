@@ -43,67 +43,65 @@
             This is a fork from <a href="https://github.com/ERROR-404-NULL-NOT-FOUND/Retaped">Retapted</a></p>
     </section>
 
-    <div id="logged" hidden="true">
-        <main>
-            <div id="central">
-                <div class="central-header">
-                    <div class="left">
-                        <select id="selectDM" name="selectDM">
-                            <option value="DMs" selected>DMs</option>
-                        </select>
+    <main id="logged">
+        <div id="central">
+<div class="central-header">
+<div class="left">
+<select id="selectDM" name="selectDM">
+<option value="DMs" selected>DMs</option>
+</select>
 
-                        <span>|</span>
+<span>|</span>
 
-                        <select id="selectServer" name="serverSelect">
-                            <option value="Server" selected>Server</option>
-                        </select>
+<select id="selectServer" name="serverSelect">
+<option value="Server" selected>Server</option>
+</select>
 
-                        <span>></span>
+<span>></span>
 
-                        <select id="selectChannel" name="selectChannel">
-                            <option  value="Channel" selected>Channel</option>
-                        </select>
+<select id="selectChannel" name="selectChannel">
+<option  value="Channel" selected>Channel</option>
+</select>
 
-                        <details>
-                            <summary>Channel desc</summary>
-                            <p class="channelDesc">.\ /. < I'm hiding in the vents</p>
-                        </details>
-                    </div>
-                    <div class="right">
-                        <span class="status">◯</span>
-                        <button class="refresh" onclick="bonfire();uIDs=[];usernames=[];pfpsrcs=[];getmessage();">refresh</button>
-                    </div>
-                </div>
-                <div id="messages"></div>
-                <h5 id="error" hidden="true"></h5>
+<details>
+<summary>Channel desc</summary>
+<p class="channelDesc">.\ /. < I'm hiding in the vents</p>
+</details>
+</div>
+<div class="right">
+<span class="status">◯</span>
+<button class="refresh" onclick="bonfire();uIDs=[];usernames=[];pfpsrcs=[];getmessage();">refresh</button>
+</div>
+</div>
+<div id="messages"></div>
+<h5 id="error" hidden="true"></h5>
 
-                <div class="toolbar">
-                    <input type="file" name="file" id="file" class="inputfile">
-                    <div class="replying-cont">
-                        <div class="replying">
-                            <button class="cancel-reply"
-                                    onclick="qs('.replying-cont').style.display='none';qs('.replying-msg').textContent='';reply=''">
-                                x</button>
-                            <p class="replying-msg">
-                                <b>lokicalmito:</b> this is a reply to a message
-                            </p>
-                        </div>
-                    </div>
-                    <div class="file-count">
-                        <button class="cancel">x</button>
-                        <span class="file-name">file-name-placeholder.png</span>
-                    </div>
-                </div>
+<div class="toolbar">
+<input type="file" name="file" id="file" class="inputfile">
+<div class="replying-cont">
+<div class="replying">
+<button class="cancel-reply"
+onclick="qs('.replying-cont').style.display='none';qs('.replying-msg').textContent='';reply=''">
+x</button>
+<p class="replying-msg">
+<b>lokicalmito:</b> this is a reply to a message
+</p>
+</div>
+</div>
+<div class="file-count">
+<button class="cancel">x</button>
+<span class="file-name">file-name-placeholder.png</span>
+</div>
+</div>
 
-                <div id="messagebar">
-                    <!-- <button onclick="contentToJson()">JSON</button> -->
-                    <label class="inputfile-label" for="file">+</label>
-                    <input id="input" class="input-bar" type="text" autocomplete="off" placeholder="Start wasting your time">
-                    <button onclick="sendmessage()">>>>></button>
-                </div>
-            </div>
-        </main>
-    </div>
+<div id="messagebar">
+<!-- <button onclick="contentToJson()">JSON</button> -->
+<label class="inputfile-label" for="file">+</label>
+<input id="input" class="input-bar" type="text" autocomplete="off" placeholder="Start wasting your time">
+<button onclick="sendmessage()">>>>></button>
+</div>
+</div>
+    </main>
 
     <div class="mobile">
         <h1 class="login-logo">
