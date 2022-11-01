@@ -103,6 +103,7 @@ main{
     justify-content: space-between;
     flex: auto;
     z-index: 10;
+    overflow: auto;
 }
 
 .central-header{
@@ -110,7 +111,6 @@ main{
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    background: var(--alt-bg);
     padding: .7rem;
 }
 
@@ -137,23 +137,16 @@ main{
 .central-header .right .status{
     color: red;
 }
+.central-header .right button {
+    background: transparent;
+}
 
 .channelDesc{
     width: 100%;
-    background: var(--alt-bg);
+    background: black;
     padding: 1rem;
     position: absolute;
     left: 0;
-}
-
-.messagecont,
-.message {
-    display: block;
-}
-
-.messagecont {
-    padding-bottom: 5px;
-    max-width: 80% !important;
 }
 
 .msg-content{
@@ -293,6 +286,10 @@ img {
     }
 
     #logged{
+        display: none !important;
+    }
+
+    .firewall{
         display: none !important;
     }
 }
