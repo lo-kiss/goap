@@ -619,7 +619,7 @@ document.addEventListener("visibilitychange", () => {
 firewall.addEventListener("mouseover", () => {
     time = setTimeout(() => {
         firewall.style.display = "none";
-    }, 20.0 * 1000);
+    }, 10.0 * 1000);
 }, false);
 
 firewall.addEventListener("mouseout", () => {
