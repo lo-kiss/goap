@@ -38,9 +38,7 @@ const logerror = qs("#loginerror");
 
 function checkToken(event){
     event.preventDefault();
-    if (loginput.value == "cum") {
-        logerror.textContent = "The thing that made you. I wish it didn't.";
-    } else if (loginput.value == "amogus" || loginput.value == "amongus") {
+    if (loginput.value == "amogus" || loginput.value == "amongus") {
         logerror.textContent = "AMOGUS";
         qs(".login-logo").style.color = "black";
         qs(".login-section").style.background = "red";
