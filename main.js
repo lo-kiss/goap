@@ -358,14 +358,6 @@ async function getdms() {
                         getmessage()"
                         id="dm${i}">${dm[i]["name"]}</option>`
                     + qs("#selectDM").innerHTML;
-
-                // document.querySelector('#selectDM').innerHTML = `<button onclick="
-                // theserver='';
-                // clearmessages();
-                // thechannel = '${dm[i]._id}';
-                // getmessage()"
-                // id="dm${i}">${dm[i]["name"]}</button>`
-                //     + document.getElementById('channels').innerHTML
             } else {
                 if (dm[i].recipients[0] == theuser._id) {
                     id = dm[i].recipients[1]
@@ -379,15 +371,6 @@ async function getdms() {
                         getmessage()"
                         id="dm${i}">${id}</option>`
                     + qs("#selectDM").innerHTML;
-
-                // document.getElementById('channels').innerHTML = `<button onclick="
-                // theserver='';
-                // clearmessages();
-                // thechannel = '${dm[i]._id}';
-                // getmessage()"
-                // id="dm${i}">${id}</button>`
-                //     + document.getElementById('channels').innerHTML
-
                 fetch("https://api.revolt.chat/users/" + id, {
                     "credentials": "omit",
                     "headers": {
@@ -496,17 +479,11 @@ async function parsemessage(message) {
         } else {
             username = usernames[uIDs.indexOf(message.author)]
         }
-        // if(message.reactions){
-        //     console.log(message.reactions)
-        //     for(let i=0;i<message.reactions.length;i++){
-        //         console.log(message.reactions[i])
-        //     }
-        // }
         qs("#messages").innerHTML = qs("#messages").innerHTML + `
         <div class="messagecont" onclick="button=qs('#reply${message._id}'); if(button.hidden){button.hidden=false}else{button.hidden=true}">
             <div class="message">
-                ${lastmessage != message.author ? `<h4 id="author">${escapeHTML(username)}</h4>` : ""}
-                <p hidden="${qs('.replying-msg') != "" ? "true" : "false"}" id="replymsg">${escapeHTML(replyinmsg)}</p>
+                ${lastmessage != message.author ? `<h4 class="author">${escapeHTML(username)}</h4>` : ""}
+                <p hidden="${qs('.replying-msg') != "" ? "true" : "false"}" class="replymsg">${escapeHTML(replyinmsg)}</p>
                 <button hidden=true class="reply" id="reply${message._id}" onclick="
                 reply='${message._id}';
                 qs('.replying-cont').style.display = 'flex';
@@ -532,7 +509,6 @@ async function getmessage() {
         "method": "GET",
     }).then(response => response.json())
         .then(data => {
-            // if (data.channel_type == "DirectMessage") { document.getElementById("chanName").innerText = data.recipients[0] } else { document.querySelector("#channelName").textContent = data.name + "⌄"; }
             if (data.description) {
                 qs(".channelDesc").textContent = data.description;
             } else {
@@ -595,7 +571,7 @@ function escapeHTML(s) {
     return s.replace(/&/, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
-        .replace(/'/gm, '&apos;')
+        .replace(/'/g, '&apos;')
         .replace(/"/g, '&quot;')
         .replace(/\//g, '&sol;')
 }
@@ -628,7 +604,6 @@ firewall.addEventListener("mouseout", () => {
 const nightwall = qs(".nightwall");
 let current = new Date();
 let hours = current.getHours();
-console.log(current.getHours());
 
 if (hours >= 23 || hours <= 7) {
     qs(".login-section").remove();

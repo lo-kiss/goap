@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="description" content="a revolt.chat client that hates you">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GOAP</title>
-    <link rel="icon" type="image/png"
-        href="./favicon.png">
+    <link rel="icon" type="image/png" href="./favicon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/roboto" type="text/css"/>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/roboto" type="text/css">
     <script src="main.js" defer></script>
 </head>
+
 <body>
     <div class="nightwall">
-        <div>
+        <div class="content">
             <h1>Nightwall</h1>
             <h2>Go to sleep</h2>
             <p>The client will become available again at 8:00</p>
         </div>
     </div>
-
     <div class="firewall">
         <div class="content">
             <h1>Firewall</h1>
@@ -27,88 +27,74 @@
             <p>I will let you inside in 10 seconds.</p>
         </div>
     </div>
-
     <section class="login-section">
-        <h1 class="login-logo">.\ /.</h1>
+        <h1 class="logo">.\ /.</h1>
         <h2 class="name">goap</h2>
-        <h4 class="desc">The revolt.chat client that hates you :)</h4>
-
+        <h4>The revolt.chat client that hates you :)</h4>
         <form class="login-form">
             <h4 id="loginerror"></h4>
             <input class="login-put" id="token" type="password" autocomplete="on" placeholder="Token">
             <button id="loginBtn" onclick="checkToken(event)">Login</button>
         </form>
         <p class="credits">
-            <a href="https://github.com/lo-kiss/goap">Github</a><br>
-            This is a fork from <a href="https://github.com/ERROR-404-NULL-NOT-FOUND/Retaped">Retapted</a></p>
+            <a href="https://github.com/lo-kiss/goap">Github</a>
+            <br> This is a fork from
+            <a href="https://github.com/ERROR-404-NULL-NOT-FOUND/Retaped">Retapted</a>
+        </p>
     </section>
-
     <main id="logged">
-        <div id="central">
-<div class="central-header">
-<div class="left">
-<select id="selectDM" name="selectDM">
-<option value="DMs" selected>DMs</option>
-</select>
+        <header>
+            <div class="left">
+                <select id="selectDM" name="selectDM">
+                    <option value="DMs" selected>DMs</option>
+                </select>
+                <span>|</span>
+                <select id="selectServer" name="serverSelect">
+                    <option value="Server" selected>Server</option>
+                </select>
+                <span>&gt;</span>
+                <select id="selectChannel" name="selectChannel">
+                    <option value="Channel" selected>Channel</option>
+                </select>
+                <details>
+                    <summary>Channel desc</summary>
+                    <p class="channelDesc">.\ /. &lt; I'm hiding in the vents</p>
+                </details>
+            </div>
+            <div class="right">
+                <span class="status">◯</span>
+                <button class="refresh" onclick="bonfire();uIDs=[];usernames=[];pfpsrcs=[];getmessage();">refresh</button>
+            </div>
+        </header>
+        <div id="messages"></div>
+        <div class="toolbar">
+            <input type="file" name="file" id="file" class="inputfile">
+            <div class="replying-cont">
+                <div class="replying">
+                    <button class="cancel-reply" onclick="qs('.replying-cont').style.display='none';qs('.replying-msg').textContent='';reply=''">
+                        x</button>
+                    <p class="replying-msg"></p>
+                </div>
+            </div>
+            <div class="file-count">
+                <button class="cancel">x</button>
+                <span class="file-name">file-name-placeholder.png</span>
+            </div>
+        </div>
+        <div id="messagebar">
 
-<span>|</span>
-
-<select id="selectServer" name="serverSelect">
-<option value="Server" selected>Server</option>
-</select>
-
-<span>></span>
-
-<select id="selectChannel" name="selectChannel">
-<option  value="Channel" selected>Channel</option>
-</select>
-
-<details>
-<summary>Channel desc</summary>
-<p class="channelDesc">.\ /. < I'm hiding in the vents</p>
-</details>
-</div>
-<div class="right">
-<span class="status">◯</span>
-<button class="refresh" onclick="bonfire();uIDs=[];usernames=[];pfpsrcs=[];getmessage();">refresh</button>
-</div>
-</div>
-<div id="messages"></div>
-<h5 id="error" hidden="true"></h5>
-
-<div class="toolbar">
-<input type="file" name="file" id="file" class="inputfile">
-<div class="replying-cont">
-<div class="replying">
-<button class="cancel-reply"
-onclick="qs('.replying-cont').style.display='none';qs('.replying-msg').textContent='';reply=''">
-x</button>
-<p class="replying-msg">
-<b>lokicalmito:</b> this is a reply to a message
-</p>
-</div>
-</div>
-<div class="file-count">
-<button class="cancel">x</button>
-<span class="file-name">file-name-placeholder.png</span>
-</div>
-</div>
-
-<div id="messagebar">
-<!-- <button onclick="contentToJson()">JSON</button> -->
-<label class="inputfile-label" for="file">+</label>
-<input id="input" class="input-bar" type="text" autocomplete="off" placeholder="Start wasting your time">
-<button onclick="sendmessage()">>>>></button>
-</div>
-</div>
+            <!-- <button onclick="contentToJson()">JSON</button> -->
+            <label class="inputfile-label" for="file">+</label>
+            <input id="input" class="input-bar" type="text" autocomplete="off" placeholder="Start wasting your time">
+            <button onclick="sendmessage()">----&gt;</button>
+        </div>
     </main>
-
     <div class="mobile">
-        <h1 class="login-logo">
-            <pre>
-_\ /_
-|   '</pre></h1>
+        <h1 class="logo">
+			<pre>_\ /_</pre>
+		</h1>
         <h2>USING MOBILE! You are not the man I want you to be</h2>
     </div>
 </body>
+
 </html>

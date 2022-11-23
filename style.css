@@ -4,7 +4,8 @@
 
 *{
     margin: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 body{
@@ -34,21 +35,30 @@ button:hover{
 
 /* LOGIN */
 .login-section, .mobile{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     text-align: center;
     width: 100%;
     height: 100vh;
     z-index: 98;
 }
 
-.login-logo, .name{
+.logo, .name{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.login-logo{
+.logo{
     color: red;
     font-size: 5rem;
     margin-bottom: 3rem;
@@ -60,8 +70,13 @@ button:hover{
 }
 
 .login-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     gap: 1rem;
     margin-top: 3rem;
 }
@@ -94,33 +109,45 @@ main{
     width: 100%;
     height: 100%;
     display: none;
-    flex-direction: column;
-}
-
-#central {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex: auto;
-    z-index: 10;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
     overflow: auto;
+    z-index: 10;
 }
 
-.central-header{
+header{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     gap: 1rem;
     padding: .7rem;
 }
 
-.central-header .left{
+header .left{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     gap: 1rem;
 }
 
-.central-header .left select{
+header .left select{
     background: transparent;
     border: none;
     color: currentColor;
@@ -128,16 +155,19 @@ main{
     font-size: 1.2em;
 }
 
-.central-header details summary{
+header details summary{
     color: hsl(0,0%,45%);
     cursor: default;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
-.central-header .right .status{
+header .right .status{
     color: red;
 }
-.central-header .right button {
+header .right button {
     background: transparent;
 }
 
@@ -154,18 +184,19 @@ main{
     word-wrap: anywhere;
 }
 
-#author {
+.author {
     color: hsl(0, 0%, 90%);
     padding-top: 10px;
 }
 
-#replymsg {
+.replymsg {
     display: block;
     width: 700px;
     font-size: smaller;
     font-style: italic;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
     white-space: nowrap;
 }
 
@@ -176,22 +207,30 @@ main{
 #messages {
     font-size: 1em;
     overflow: auto;
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
     padding: 1rem 2rem;
-    flex: auto;
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
 }
 
 #messagebar{
     width: 100%;
+    display:-webkit-box;
+    display:-ms-flexbox;
     display:flex;
 }
 
 .input-bar{
-    flex: auto;
-    padding: 0.7rem 1rem;
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+    padding: 0.7rem 0;
 }
 
 .inputfile-label{
+    display: -ms-grid;
     display: grid;
     place-content: center;
     padding: 0 1rem;
@@ -228,15 +267,25 @@ img {
 
 .replying-cont{
     display: none;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     background: var(--alt-bg);
     padding: .3rem;
 }
 
 .replying{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .cancel-reply{
@@ -249,9 +298,16 @@ img {
     height: 100vh;
     position: absolute;
     display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     background: black;
     text-align: center;
     z-index: 97;
@@ -264,10 +320,13 @@ img {
 .content{
     opacity: 0;
     pointer-events: none;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
-.firewall:hover > .content, .nightwall:hover > .content{
+.firewall:hover > .content,
+.nightwall:hover > .content{
     opacity: 1;
 }
 
@@ -277,19 +336,6 @@ img {
 }
 
 @media screen and (max-width: 750px) {
-    .mobile{
-        display: flex;
-    }
-
-    .login-section{
-        display: none;
-    }
-
-    #logged{
-        display: none !important;
-    }
-
-    .firewall{
-        display: none !important;
-    }
+    .mobile{display: -webkit-box;display: -ms-flexbox;display: flex;}
+    .firewall, .login-section, #logged {display: none !important;}
 }
